@@ -6,11 +6,15 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>C501_Appointment_Scheduled__c.Account_Id__c</members>
+        <members>C501_Appointment_Scheduled__c.Account__c</members>
         <members>C501_Appointment_Scheduled__c.Appointment_Info__c</members>
         <members>C501_Appointment_Scheduled__c.C501_Appointment__c</members>
         <members>C501_Appointment_Scheduled__c.C501_Contact__c</members>
         <members>C501_Appointment_Scheduled__c.Contact_Id__c</members>
         <members>C501_Appointment_Scheduled__c.Date__c</members>
+        <members>C501_Appointment_Scheduled__c.Email__c</members>
+        <members>C501_Appointment_Scheduled__c.Time__c</members>
         <members>C501_Appointment__c.Available_Time__c</members>
         <members>C501_Appointment__c.C501_Scheduled_Appointments__c</members>
         <members>C501_Appointment__c.Date__c</members>
@@ -28,11 +32,12 @@
     <types>
         <members>Salesforce_Event_Scheduler</members>
         <members>Salesforce_Event_Scheduler/Admin_Setup_Appointments_Template</members>
+        <members>Salesforce_Event_Scheduler/Event_Notification_Template</members>
         <name>EmailTemplate</name>
     </types>
     <types>
-        <members>C501_Appointment_Schedule-13</members>
-        <members>C501_Appointment_Schedule_Event-4</members>
+        <members>C501_Appointment_Schedule-31</members>
+        <members>C501_Appointment_Schedule_Event-14</members>
         <name>Flow</name>
     </types>
     <types>
@@ -51,6 +56,7 @@
         <name>StaticResource</name>
     </types>
     <types>
+        <members>C501_Appointment_Scheduled__c.Event_Notification_Alert</members>
         <members>Contact.Admin_Setup_Appointments_Alert</members>
         <name>WorkflowAlert</name>
     </types>
