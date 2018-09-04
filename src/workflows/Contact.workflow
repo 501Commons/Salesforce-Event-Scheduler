@@ -5,7 +5,15 @@
         <description>Admin Setup - Appointments Alert</description>
         <protected>false</protected>
         <recipients>
+
+            <!-- White Center Foodbank Production -->
+<!--
             <recipient>db.wc@501commons.org</recipient>
+-->
+
+            <!-- 501Commons Foodbank Sandbox -->
+            <recipient>daveb@501commons.org.foodbank</recipient>
+
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>

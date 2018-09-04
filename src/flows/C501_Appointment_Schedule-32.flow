@@ -241,7 +241,7 @@
         <name>Update_Appointment</name>
         <label>Update Appointment</label>
         <locationX>93</locationX>
-        <locationY>896</locationY>
+        <locationY>897</locationY>
         <assignmentItems>
             <assignToReference>soAppointment.Available_Time__c</assignToReference>
             <operator>Assign</operator>
@@ -268,6 +268,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>Screen_Appointment_Date</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>soAppointment.Name_Unique__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>getNewAppointmentNameUnique</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -743,6 +750,11 @@
         <name>getNewAppointmentName</name>
         <dataType>String</dataType>
         <expression>TEXT({!Screen_Appointment_Date}) + &quot; - &quot; + {!getDayOfWeek} + &quot; Appointments&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>getNewAppointmentNameUnique</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!Screen_Appointment_Date}) + &quot; - &quot; + {!getDayOfWeek} + &quot; Appointments &quot; + {!soAppointment.Time__c}</expression>
     </formulas>
     <formulas>
         <name>getNewAppointmentScheduledName</name>
