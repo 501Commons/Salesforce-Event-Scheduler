@@ -19,6 +19,7 @@
         <members>C501_Appointment__c.C501_Scheduled_Appointments__c</members>
         <members>C501_Appointment__c.Date__c</members>
         <members>C501_Appointment__c.Maximum_Scheduled_Appointments__c</members>
+        <members>C501_Appointment__c.Name_Unique__c</members>
         <members>C501_Appointment__c.Summary__c</members>
         <members>C501_Appointment__c.Time__c</members>
         <members>Contact.Id_Number__c</members>
