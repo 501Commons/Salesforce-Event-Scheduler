@@ -39,6 +39,7 @@
     <types>
         <members>C501_Appointment_Schedule-1</members>
         <members>C501_Appointment_Schedule_Event-1</members>
+        <members>C501_Appointment_Schedule_Event-2</members>
         <name>Flow</name>
     </types>
     <types>
