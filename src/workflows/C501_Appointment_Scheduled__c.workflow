@@ -8,15 +8,11 @@
             <field>C501_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-
-        <!-- White Center Foodbank Production -->
-<!--        
+        <senderType>CurrentUser</senderType>
+        <!--
         <senderAddress>cheo@whitecenterfoodbank.org</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
--->
-        <!-- 501Commons Foodbank Sandbox -->
-        <senderType>CurrentUser</senderType>
-
+        -->
         <template>Salesforce_Event_Scheduler/Event_Notification_Template</template>
     </alerts>
 </Workflow>

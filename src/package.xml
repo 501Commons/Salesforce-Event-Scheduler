@@ -37,10 +37,8 @@
         <name>EmailTemplate</name>
     </types>
     <types>
-        <!-- -1 Flows are for 501 Commons -->
-        <!-- -2 Flows are for White Center Food Bank -->
-        <members>C501_Appointment_Schedule-2</members>
-        <members>C501_Appointment_Schedule_Event-2</members>
+        <members>C501_Appointment_Schedule-1</members>
+        <members>C501_Appointment_Schedule_Event-1</members>
         <name>Flow</name>
     </types>
     <types>
