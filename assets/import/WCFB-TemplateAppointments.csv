@@ -1,67 +1,65 @@
-"Available_Time__c","Date__c","Id","Name","Time__c"
-"2018-01-01T19:00:00.000Z","2018-01-01","a0u1I00001V4gjtQAB","Template Wednesday 11:00 AM","11:00 AM"
-"2018-01-01T18:00:00.000Z","2018-01-01","a0u1I00001V4gjLQAR","Template Friday 10:00 AM","10:00 AM"
-"2018-01-01T19:30:00.000Z","2018-01-01","a0u1I00001V4gk3QAB","Template Wednesday 11:30 AM","11:30 AM"
-"2018-01-01T20:45:00.000Z","2018-01-01","a0u1I00001V4gkNQAR","Template Wednesday 12:45 PM","12:45 PM"
-"2018-01-02T01:15:00.000Z","2018-01-01","a0u1I00001V4gmNQAR","Template Second Wednesday 5:15 PM","5:15 PM"
-"2018-01-01T19:15:00.000Z","2018-01-01","a0u1I00001V4gjyQAB","Template Wednesday 11:15 AM","11:15 AM"
-"2018-01-01T19:45:00.000Z","2018-01-01","a0u1I00001V4gk8QAB","Template Wednesday 11:45 AM","11:45 AM"
-"2018-01-01T22:00:00.000Z","2018-01-01","a0u1I00001V4glVQAR","Template Monday 2:00 PM","2:00 PM"
-"2018-01-01T22:30:00.000Z","2018-01-01","a0u1I00001V4glWQAR","Template Monday 2:30 PM","2:30 PM"
-"2018-01-01T20:45:00.000Z","2018-01-01","a0u1I00001V4glUQAR","Template Monday 12:45 PM","12:45 PM"
-"2018-01-02T00:30:00.000Z","2018-01-01","a0u1I00001V4gm8QAB","Template Second Wednesday 4:30 PM","4:30 PM"
-"2018-01-01T20:30:00.000Z","2018-01-01","a0u1I00001V4glKQAR","Template Monday 12:30 PM","12:30 PM"
-"2018-01-01T21:00:00.000Z","2018-01-01","a0u1I00001V4gleQAB","Template Monday 1:00 PM","1:00 PM"
-"2018-01-02T01:45:00.000Z","2018-01-01","a0u1I00001V4gmXQAR","Template Second Wednesday 5:45 PM","5:45 PM"
-"2018-01-01T19:00:00.000Z","2018-01-01","a0u1I00001V4gkSQAR","Template Thursday 11:00 AM","11:00 AM"
-"2018-01-01T19:30:00.000Z","2018-01-01","a0u1I00001V4gkTQAR","Template Thursday 11:30 AM","11:30 AM"
-"2018-01-01T20:45:00.000Z","2018-01-01","a0u1I00001V4gkUQAR","Template Thursday 12:45 PM","12:45 PM"
-"2018-01-01T19:15:00.000Z","2018-01-01","a0u1I00001V4gkVQAR","Template Thursday 11:15 AM","11:15 AM"
-"2018-01-01T19:45:00.000Z","2018-01-01","a0u1I00001V4gkWQAR","Template Thursday 11:45 AM","11:45 AM"
-"2018-01-01T18:45:00.000Z","2018-01-01","a0u1I00001V4gkXQAR","Template Thursday 10:45 AM","10:45 AM"
-"2018-01-01T18:30:00.000Z","2018-01-01","a0u1I00001V4gkYQAR","Template Thursday 10:30 AM","10:30 AM"
-"2018-01-01T20:00:00.000Z","2018-01-01","a0u1I00001V4gkZQAR","Template Thursday 12:00 PM","12:00 PM"
-"2018-01-01T20:30:00.000Z","2018-01-01","a0u1I00001V4gkaQAB","Template Thursday 12:30 PM","12:30 PM"
-"2018-01-01T20:15:00.000Z","2018-01-01","a0u1I00001V4gkbQAB","Template Thursday 12:15 PM","12:15 PM"
-"2018-01-01T18:15:00.000Z","2018-01-01","a0u1I00001V4gkcQAB","Template Thursday 10:15 AM","10:15 AM"
-"2018-01-01T18:00:00.000Z","2018-01-01","a0u1I00001V4gkdQAB","Template Thursday 10:00 AM","10:00 AM"
-"2018-01-01T18:45:00.000Z","2018-01-01","a0u1I00001V4gjHQAR","Template Wednesday 10:45 AM","10:45 AM"
-"2018-01-01T18:30:00.000Z","2018-01-01","a0u1I00001V4gjoQAB","Template Wednesday 10:30 AM","10:30 AM"
-"2018-01-01T20:00:00.000Z","2018-01-01","a0u1I00001V4glAQAR","Template Monday 12:00 PM","12:00 PM"
-"2018-01-01T22:15:00.000Z","2018-01-01","a0u1I00001V4gljQAB","Template Monday 2:15 PM","2:15 PM"
-"2018-01-02T00:15:00.000Z","2018-01-01","a0u1I00001V4gm3QAB","Template Second Wednesday 4:15 PM","4:15 PM"
-"2018-01-01T19:00:00.000Z","2018-01-01","a0u1I00001V4gkeQAB","Template Friday 11:00 AM","11:00 AM"
-"2018-01-01T19:30:00.000Z","2018-01-01","a0u1I00001V4gkfQAB","Template Friday 11:30 AM","11:30 AM"
-"2018-01-01T20:45:00.000Z","2018-01-01","a0u1I00001V4gkgQAB","Template Friday 12:45 PM","12:45 PM"
-"2018-01-01T19:15:00.000Z","2018-01-01","a0u1I00001V4gkhQAB","Template Friday 11:15 AM","11:15 AM"
-"2018-01-01T19:45:00.000Z","2018-01-01","a0u1I00001V4gkiQAB","Template Friday 11:45 AM","11:45 AM"
-"2018-01-01T18:45:00.000Z","2018-01-01","a0u1I00001V4gkjQAB","Template Friday 10:45 AM","10:45 AM"
-"2018-01-01T18:30:00.000Z","2018-01-01","a0u1I00001V4gkkQAB","Template Friday 10:30 AM","10:30 AM"
-"2018-01-01T20:00:00.000Z","2018-01-01","a0u1I00001V4gklQAB","Template Friday 12:00 PM","12:00 PM"
-"2018-01-01T20:30:00.000Z","2018-01-01","a0u1I00001V4gkmQAB","Template Friday 12:30 PM","12:30 PM"
-"2018-01-01T20:15:00.000Z","2018-01-01","a0u1I00001V4gknQAB","Template Friday 12:15 PM","12:15 PM"
-"2018-01-01T18:15:00.000Z","2018-01-01","a0u1I00001V4gkoQAB","Template Friday 10:15 AM","10:15 AM"
-"2018-01-01T18:00:00.000Z","2018-01-01","a0u1I00001V4gkpQAB","Template Friday 10:00 AM","10:00 AM"
-"2018-01-02T00:45:00.000Z","2018-01-01","a0u1I00001V4gmDQAR","Template Second Wednesday 4:45 PM","4:45 PM"
-"2018-01-01T20:15:00.000Z","2018-01-01","a0u1I00001V4glFQAR","Template Monday 12:15 PM","12:15 PM"
-"2018-01-01T22:45:00.000Z","2018-01-01","a0u1I00001V4glGQAR","Template Monday 2:45 PM","2:45 PM"
-"2018-01-02T01:30:00.000Z","2018-01-01","a0u1I00001V4gmSQAR","Template Second Wednesday 5:30 PM","5:30 PM"
-"2018-01-01T20:00:00.000Z","2018-01-01","a0u1I00001V4gkDQAR","Template Wednesday 12:00 PM","12:00 PM"
-"2018-01-02T00:30:00.000Z","2018-01-01","a0u1I00001V4gmdQAB","Template Fourth Wednesday 4:30 PM","4:30 PM"
-"2018-01-02T01:45:00.000Z","2018-01-01","a0u1I00001V4gmeQAB","Template Fourth Wednesday 5:45 PM","5:45 PM"
-"2018-01-02T00:15:00.000Z","2018-01-01","a0u1I00001V4gmfQAB","Template Fourth Wednesday 4:15 PM","4:15 PM"
-"2018-01-02T00:45:00.000Z","2018-01-01","a0u1I00001V4gmgQAB","Template Fourth Wednesday 4:45 PM","4:45 PM"
-"2018-01-02T01:30:00.000Z","2018-01-01","a0u1I00001V4gmhQAB","Template Fourth Wednesday 5:30 PM","5:30 PM"
-"2018-01-02T01:15:00.000Z","2018-01-01","a0u1I00001V4gmcQAB","Template Fourth Wednesday 5:15 PM","5:15 PM"
-"2018-01-01T21:30:00.000Z","2018-01-01","a0u1I00001V4gltQAB","Template Monday 1:30 PM","1:30 PM"
-"2018-01-01T21:45:00.000Z","2018-01-01","a0u1I00001V4gluQAB","Template Monday 1:45 PM","1:45 PM"
-"2018-01-02T01:00:00.000Z","2018-01-01","a0u1I00001V4gmiQAB","Template Fourth Wednesday 5:00 PM","5:00 PM"
-"2018-01-02T00:00:00.000Z","2018-01-01","a0u1I00001V4gmjQAB","Template Fourth Wednesday 4:00 PM","4:00 PM"
-"2018-01-02T01:00:00.000Z","2018-01-01","a0u1I00001V4gmIQAR","Template Second Wednesday 5:00 PM","5:00 PM"
-"2018-01-01T20:30:00.000Z","2018-01-01","a0u1I00001V4gkJQAR","Template Wednesday 12:30 PM","12:30 PM"
-"2018-01-01T20:15:00.000Z","2018-01-01","a0u1I00001V4gkIQAR","Template Wednesday 12:15 PM","12:15 PM"
-"2018-01-01T18:00:00.000Z","2018-01-01","a0u1I00001V4gjGQAR","Template Thursday 10:00 AM","10:00 AM"
-"2018-01-02T00:00:00.000Z","2018-01-01","a0u1I00001V4glyQAB","Template Second Wednesday 4:00 PM","4:00 PM"
-"2018-01-01T21:15:00.000Z","2018-01-01","a0u1I00001V4gloQAB","Template Monday 1:15 PM","1:15 PM"
-"2018-01-01T18:15:00.000Z","2018-01-01","a0u1I00001V4gjBQAR","Template Wednesday 10:15 AM","10:15 AM"
-"2018-01-01T18:00:00.000Z","2018-01-01","a0u1I00001V4ZWdQAN","Template Wednesday 10:00 AM","10:00 AM"
+Available_Time__c,Date__c,Name,Name_Unique__c,Time__c
+2018-01-02T00:00:00.000Z,2018-01-01,Template Fourth Wednesday 4:00 PM,Template Fourth Wednesday 4:00 PM,4:00 PM
+2018-01-02T00:15:00.000Z,2018-01-01,Template Fourth Wednesday 4:15 PM,Template Fourth Wednesday 4:15 PM,4:15 PM
+2018-01-02T00:30:00.000Z,2018-01-01,Template Fourth Wednesday 4:30 PM,Template Fourth Wednesday 4:30 PM,4:30 PM
+2018-01-02T00:45:00.000Z,2018-01-01,Template Fourth Wednesday 4:45 PM,Template Fourth Wednesday 4:45 PM,4:45 PM
+2018-01-02T01:00:00.000Z,2018-01-01,Template Fourth Wednesday 5:00 PM,Template Fourth Wednesday 5:00 PM,5:00 PM
+2018-01-02T01:15:00.000Z,2018-01-01,Template Fourth Wednesday 5:15 PM,Template Fourth Wednesday 5:15 PM,5:15 PM
+2018-01-02T01:30:00.000Z,2018-01-01,Template Fourth Wednesday 5:30 PM,Template Fourth Wednesday 5:30 PM,5:30 PM
+2018-01-02T01:45:00.000Z,2018-01-01,Template Fourth Wednesday 5:45 PM,Template Fourth Wednesday 5:45 PM,5:45 PM
+2018-01-01T18:00:00.000Z,2018-01-01,Template Friday 10:00 AM,Template Friday 10:00 AM,10:00 AM
+2018-01-01T18:15:00.000Z,2018-01-01,Template Friday 10:15 AM,Template Friday 10:15 AM,10:15 AM
+2018-01-01T18:30:00.000Z,2018-01-01,Template Friday 10:30 AM,Template Friday 10:30 AM,10:30 AM
+2018-01-01T18:45:00.000Z,2018-01-01,Template Friday 10:45 AM,Template Friday 10:45 AM,10:45 AM
+2018-01-01T19:00:00.000Z,2018-01-01,Template Friday 11:00 AM,Template Friday 11:00 AM,11:00 AM
+2018-01-01T19:15:00.000Z,2018-01-01,Template Friday 11:15 AM,Template Friday 11:15 AM,11:15 AM
+2018-01-01T19:30:00.000Z,2018-01-01,Template Friday 11:30 AM,Template Friday 11:30 AM,11:30 AM
+2018-01-01T19:45:00.000Z,2018-01-01,Template Friday 11:45 AM,Template Friday 11:45 AM,11:45 AM
+2018-01-01T20:00:00.000Z,2018-01-01,Template Friday 12:00 PM,Template Friday 12:00 PM,12:00 PM
+2018-01-01T20:15:00.000Z,2018-01-01,Template Friday 12:15 PM,Template Friday 12:15 PM,12:15 PM
+2018-01-01T20:30:00.000Z,2018-01-01,Template Friday 12:30 PM,Template Friday 12:30 PM,12:30 PM
+2018-01-01T20:45:00.000Z,2018-01-01,Template Friday 12:45 PM,Template Friday 12:45 PM,12:45 PM
+2018-01-01T21:00:00.000Z,2018-01-01,Template Monday 1:00 PM,Template Monday 1:00 PM,1:00 PM
+2018-01-01T21:15:00.000Z,2018-01-01,Template Monday 1:15 PM,Template Monday 1:15 PM,1:15 PM
+2018-01-01T21:30:00.000Z,2018-01-01,Template Monday 1:30 PM,Template Monday 1:30 PM,1:30 PM
+2018-01-01T21:45:00.000Z,2018-01-01,Template Monday 1:45 PM,Template Monday 1:45 PM,1:45 PM
+2018-01-01T20:00:00.000Z,2018-01-01,Template Monday 12:00 PM,Template Monday 12:00 PM,12:00 PM
+2018-01-01T20:15:00.000Z,2018-01-01,Template Monday 12:15 PM,Template Monday 12:15 PM,12:15 PM
+2018-01-01T20:30:00.000Z,2018-01-01,Template Monday 12:30 PM,Template Monday 12:30 PM,12:30 PM
+2018-01-01T20:45:00.000Z,2018-01-01,Template Monday 12:45 PM,Template Monday 12:45 PM,12:45 PM
+2018-01-01T22:00:00.000Z,2018-01-01,Template Monday 2:00 PM,Template Monday 2:00 PM,2:00 PM
+2018-01-01T22:15:00.000Z,2018-01-01,Template Monday 2:15 PM,Template Monday 2:15 PM,2:15 PM
+2018-01-01T22:30:00.000Z,2018-01-01,Template Monday 2:30 PM,Template Monday 2:30 PM,2:30 PM
+2018-01-01T22:45:00.000Z,2018-01-01,Template Monday 2:45 PM,Template Monday 2:45 PM,2:45 PM
+2018-01-02T00:00:00.000Z,2018-01-01,Template Second Wednesday 4:00 PM,Template Second Wednesday 4:00 PM,4:00 PM
+2018-01-02T00:15:00.000Z,2018-01-01,Template Second Wednesday 4:15 PM,Template Second Wednesday 4:15 PM,4:15 PM
+2018-01-02T00:30:00.000Z,2018-01-01,Template Second Wednesday 4:30 PM,Template Second Wednesday 4:30 PM,4:30 PM
+2018-01-02T00:45:00.000Z,2018-01-01,Template Second Wednesday 4:45 PM,Template Second Wednesday 4:45 PM,4:45 PM
+2018-01-02T01:00:00.000Z,2018-01-01,Template Second Wednesday 5:00 PM,Template Second Wednesday 5:00 PM,5:00 PM
+2018-01-02T01:15:00.000Z,2018-01-01,Template Second Wednesday 5:15 PM,Template Second Wednesday 5:15 PM,5:15 PM
+2018-01-02T01:30:00.000Z,2018-01-01,Template Second Wednesday 5:30 PM,Template Second Wednesday 5:30 PM,5:30 PM
+2018-01-02T01:45:00.000Z,2018-01-01,Template Second Wednesday 5:45 PM,Template Second Wednesday 5:45 PM,5:45 PM
+2018-01-01T18:00:00.000Z,2018-01-01,Template Thursday 10:00 AM,Template Thursday 10:00 AM,10:00 AM
+2018-01-01T18:15:00.000Z,2018-01-01,Template Thursday 10:15 AM,Template Thursday 10:15 AM,10:15 AM
+2018-01-01T18:30:00.000Z,2018-01-01,Template Thursday 10:30 AM,Template Thursday 10:30 AM,10:30 AM
+2018-01-01T18:45:00.000Z,2018-01-01,Template Thursday 10:45 AM,Template Thursday 10:45 AM,10:45 AM
+2018-01-01T19:00:00.000Z,2018-01-01,Template Thursday 11:00 AM,Template Thursday 11:00 AM,11:00 AM
+2018-01-01T19:15:00.000Z,2018-01-01,Template Thursday 11:15 AM,Template Thursday 11:15 AM,11:15 AM
+2018-01-01T19:30:00.000Z,2018-01-01,Template Thursday 11:30 AM,Template Thursday 11:30 AM,11:30 AM
+2018-01-01T19:45:00.000Z,2018-01-01,Template Thursday 11:45 AM,Template Thursday 11:45 AM,11:45 AM
+2018-01-01T20:00:00.000Z,2018-01-01,Template Thursday 12:00 PM,Template Thursday 12:00 PM,12:00 PM
+2018-01-01T20:15:00.000Z,2018-01-01,Template Thursday 12:15 PM,Template Thursday 12:15 PM,12:15 PM
+2018-01-01T20:30:00.000Z,2018-01-01,Template Thursday 12:30 PM,Template Thursday 12:30 PM,12:30 PM
+2018-01-01T20:45:00.000Z,2018-01-01,Template Thursday 12:45 PM,Template Thursday 12:45 PM,12:45 PM
+2018-01-01T18:00:00.000Z,2018-01-01,Template Wednesday 10:00 AM,Template Wednesday 10:00 AM,10:00 AM
+2018-01-01T18:15:00.000Z,2018-01-01,Template Wednesday 10:15 AM,Template Wednesday 10:15 AM,10:15 AM
+2018-01-01T18:30:00.000Z,2018-01-01,Template Wednesday 10:30 AM,Template Wednesday 10:30 AM,10:30 AM
+2018-01-01T18:45:00.000Z,2018-01-01,Template Wednesday 10:45 AM,Template Wednesday 10:45 AM,10:45 AM
+2018-01-01T19:00:00.000Z,2018-01-01,Template Wednesday 11:00 AM,Template Wednesday 11:00 AM,11:00 AM
+2018-01-01T19:15:00.000Z,2018-01-01,Template Wednesday 11:15 AM,Template Wednesday 11:15 AM,11:15 AM
+2018-01-01T19:30:00.000Z,2018-01-01,Template Wednesday 11:30 AM,Template Wednesday 11:30 AM,11:30 AM
+2018-01-01T19:45:00.000Z,2018-01-01,Template Wednesday 11:45 AM,Template Wednesday 11:45 AM,11:45 AM
+2018-01-01T20:00:00.000Z,2018-01-01,Template Wednesday 12:00 PM,Template Wednesday 12:00 PM,12:00 PM
+2018-01-01T20:15:00.000Z,2018-01-01,Template Wednesday 12:15 PM,Template Wednesday 12:15 PM,12:15 PM
+2018-01-01T20:30:00.000Z,2018-01-01,Template Wednesday 12:30 PM,Template Wednesday 12:30 PM,12:30 PM
+2018-01-01T20:45:00.000Z,2018-01-01,Template Wednesday 12:45 PM,Template Wednesday 12:45 PM,12:45 PM
