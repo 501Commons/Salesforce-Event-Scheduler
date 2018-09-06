@@ -8,7 +8,7 @@
             <!--
             <recipient>db.wc@501commons.org</recipient>
             -->
-            <recipient>daveb@501commons.org.foodbank</recipient>
+            <recipient>daveb@501commons.org</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
