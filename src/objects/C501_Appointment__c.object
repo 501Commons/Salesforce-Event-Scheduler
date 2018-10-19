@@ -52,6 +52,28 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Appointment_Schedule__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Appointment Schedule</label>
+        <referenceTo>C501_Appointment_Schedule__c</referenceTo>
+        <relationshipLabel>Appointments</relationshipLabel>
+        <relationshipName>Appointments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Appointments_Full__c</fullName>
+        <externalId>false</externalId>
+        <formula>C501_Scheduled_Appointments__c &gt;=  Maximum_Scheduled_Appointments__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Appointments Full</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Available_Time__c</fullName>
         <externalId>false</externalId>
@@ -76,6 +98,14 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Enable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Enable</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Maximum_Scheduled_Appointments__c</fullName>

@@ -1,5 +1,5 @@
 @isTest
-public with sharing class C501_AppointmentScheduleTriggerHelperTest {
+public with sharing class C501_AppointmentScheduleTriggerTest {
 
 	@isTest
 	private static void testUpdateAppointmentScheduleTrigger() {
@@ -14,7 +14,6 @@ public with sharing class C501_AppointmentScheduleTriggerHelperTest {
 		);
 		insert appointment;
 
-		C501_TriggerHelper triggerHelper = new C501_TriggerHelper();
-		triggerHelper.updateAppointmentSchedule(new sList<C501_Appointment_Schedule__c> { appointmentSchedule }, null);
+		C501_AppointmentScheduleTriggerHelper.get().updateAppointmentSchedule(new List<C501_Appointment_Schedule__c> { appointmentSchedule }, null);
 	}
 }

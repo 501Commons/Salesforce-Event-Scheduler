@@ -8,11 +8,8 @@
             <field>C501_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
-        <!--
         <senderAddress>cheo@whitecenterfoodbank.org</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        -->
         <template>Salesforce_Event_Scheduler/Event_Notification_Template</template>
     </alerts>
 </Workflow>

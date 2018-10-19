@@ -1,11 +1,11 @@
-public with sharing class C501_TriggerHelper {
+public with sharing class C501_AppointmentScheduleTriggerHelper {
 
 	public class InvalidParameterValueException extends Exception {}
 
 	// only need one instance of this class per transaction
-	private static C501_TriggerHelper instance;
-	public static C501_TriggerHelper get() {
-		if (instance == null) instance = new C501_TriggerHelper();
+	private static C501_AppointmentScheduleTriggerHelper instance;
+	public static C501_AppointmentScheduleTriggerHelper get() {
+		if (instance == null) instance = new C501_AppointmentScheduleTriggerHelper();
 		return instance;
 	}
 	
@@ -53,7 +53,7 @@ public with sharing class C501_TriggerHelper {
 		}
 
 		updateAppointments.clear();
-		Map<Id, C501_Appointment__c> insertAppointments = new Map<String, C501_Appointment__c>();
+		Map<String, C501_Appointment__c> insertAppointments = new Map<String, C501_Appointment__c>();
 
 		// Step2: Update all related Appointments and create new Appointments
 		for ( C501_Appointment_Schedule__c appointmentSchedule :appointmentScheduleList ) {
@@ -68,17 +68,24 @@ public with sharing class C501_TriggerHelper {
 				Boolean inserted = false;
 
 				DateTime appointmentDateTime = appointmentSchedule.Scheduled_Start_Date_Time__c;
-				Time appointmentTime = appointmentDateTime.getTime();
+				Time appointmentTime = appointmentDateTime.time();
 				while (appointmentTime < appointmentSchedule.Scheduled_End_Time__c) {
+					String appointmentTimeDisplay = String.valueOf(appointmentTime.hour())
+							+ ':'
+							+ String.valueOf(appointmentTime.minute())
+							+ ' AM';
+					if (appointmentTime.hour() > 12) {
+						appointmentTimeDisplay = String.valueOf(appointmentTime.hour() - 12)
+							+ ':'
+							+ String.valueOf(appointmentTime.minute())
+							+ ' PM';
+					}
 					C501_Appointment__c appointment = new C501_Appointment__c();
 					appointment.Name = appointmentSchedule.Scheduled_Start_Date_Time__c.format('yyyy-MM-dd')
 						+ ' - '
-						+ (appointmentTime.hour() > 12) ? String.valueOf(appointmentTime.hour() - 12) : String.valueOf(appointmentTime.hour())
-						+ ':'
-						+ String.valueOf(appointmentTime.minute())
-						+ (appointmentTime.hour() > 12) ? 'PM' : 'AM';
+						+ appointmentTimeDisplay;
 
-					if (allAppointmentsByName.contains(appointment.Name)) {
+					if (allAppointmentsByName.containsKey(appointment.Name)) {
 						C501_Appointment__c appointmentUpdate = allAppointmentsByName.remove(appointment.Name);
 						appointmentUpdate.Enable__c = true;
 						appointmentUpdate.Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c;
@@ -88,12 +95,12 @@ public with sharing class C501_TriggerHelper {
 						updated = true;
 					}
 					else {
-						appointment.Name_Unique__c = Name_Unique__c.Name;
+						appointment.Name_Unique__c = appointment.Name;
 						appointment.Appointment_Schedule__c = appointmentSchedule.Id;
 						appointment.Available_Time__c = appointmentDateTime;
-						appointment.Date__c = appointmentSchedule.Scheduled_Start_Date_Time__c.date;
-						appointment.Time__c = appointmentTime;
-						appointment.Enable = true;
+						appointment.Date__c = appointmentSchedule.Scheduled_Start_Date_Time__c.date();
+						appointment.Time__c = appointmentTimeDisplay;
+						appointment.Enable__c = true;
 						appointment.Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c;
 
 						insertAppointments.put(appointment.Name, appointment);
@@ -102,8 +109,8 @@ public with sharing class C501_TriggerHelper {
 					}
 
 					// Increment by 15 minutes
-					appointmentDateTime.addMintues(15);
-					appointmentTime = appointmentDateTime.getTime();
+					appointmentDateTime.addMinutes(15);
+					appointmentTime = appointmentDateTime.time();
 
 // DEBUG
 					if (updated && inserted) {

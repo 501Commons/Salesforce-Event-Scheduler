@@ -52,6 +52,7 @@
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Account_Id__c</fullName>
         <externalId>false</externalId>
@@ -137,6 +138,14 @@
         <trackTrending>false</trackTrending>
         <type>Email</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Enable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Enable</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Time__c</fullName>
