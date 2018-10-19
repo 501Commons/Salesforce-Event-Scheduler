@@ -35,6 +35,7 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>C501_Appointment_Schedule__c</members>
         <members>C501_Appointment_Scheduled__c</members>
         <members>C501_Appointment__c</members>
         <name>CustomObject</name>
