@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>salesforce-event-scheduler</fullName>
+    <types>
+        <members>C501_AppointmentScheduleTriggerHelper</members>
+        <members>C501_AppointmentScheduleTriggerHelperTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>AppointmentScheduleTrigger</members>
+        <members>AppointmentScheduleTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
     <types>
         <members>C501_Appointment_Schedule</members>
         <name>ApexPage</name>
