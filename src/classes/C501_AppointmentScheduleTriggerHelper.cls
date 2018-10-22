@@ -65,44 +65,89 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 
 			try {
 				DateTime appointmentDateTime = appointmentSchedule.Scheduled_Start_Date_Time__c;
-				Time appointmentTime = appointmentDateTime.time();
+
+				Set<DateTime> appointmentDays = new Set<DateTime>();
+				appointmentDays.add(appointmentDateTime);
+
+				while (appointmentSchedule.Range_Of_Recurrence_End_By__c != null &&
+					appointmentDateTime.date() <= appointmentSchedule.Range_Of_Recurrence_End_By__c) {
+					
+					// Set appointmentDateTime to first day of the month
+					appointmentDateTime = appointmentDateTime.addDays(-1 * (appointmentDateTime.day() - 1));
+
+					for ( Integer weekday = 0; weekday <= 6; weekday++ ) {
+
+						if (appointmentDateTime < appointmentSchedule.Scheduled_Start_Date_Time__c) {
+							appointmentDateTime = appointmentDateTime.addDays(1);
+							continue;
+						}
+
+						String dayOfWeek = appointmentDateTime.format('E');
+						System.debug('**********dayOfWeek: ' + dayOfWeek + ' appointmentSchedule.Days_of_Week__c: ' + appointmentSchedule.Days_of_Week__c);
+
+						if (appointmentSchedule.Days_of_Week__c.contains(dayOfWeek)) {
+							for ( String weeklyOccurence :appointmentSchedule.Weekly_Occurrence__c.split(';')) {
+
+								Integer weeklyOccuranceFactor = Integer.valueOf(weeklyOccurence.left(1)) - 1;
+								DateTime appointmentDayAdd = appointmentDateTime.addDays(7 * weeklyOccuranceFactor);
+
+								if (appointmentDayAdd.month() ==  appointmentDateTime.month()) {
+									appointmentDays.add(appointmentDayAdd);
+								}						
+							}
+						}
+
+						appointmentDateTime = appointmentDateTime.addDays(1);
+					}
+
+					// Set appointmentDateTime to next month
+					appointmentDateTime = appointmentDateTime.addMonths(1);
+				}
 
 				Integer endTimeInMinutes = appointmentSchedule.Scheduled_End_Time__c.hour() * 60 + appointmentSchedule.Scheduled_End_Time__c.minute();
+				Time appointmentTime = appointmentDateTime.time();
 				Integer appointmentTimeInMinutes = appointmentTime.hour() * 60 + appointmentTime.minute();
-				Integer numberIntervals = (endTimeInMinutes - appointmentTimeInMinutes) / 15;
-				if (numberIntervals > 96) {
+				Integer numberTimeIntervals = (endTimeInMinutes - appointmentTimeInMinutes) / 15;
+				if (numberTimeIntervals > 96) {
 					// Throw Exception/Error
 					continue;
 				}
-				while (numberIntervals-- > 0) {
-					String appointmentName = appointmentDateTime.format('yyyy-MM-dd - HH:mm a');
-					String appointmentTimeDisplay = appointmentDateTime.format('HH:mm a');
 
-					System.debug('**********Internal: ' + String.valueOf(numberIntervals) + ' appointmentTimeDisplay: ' + appointmentTimeDisplay + ' Name: ' + appointmentName);
+				for (DateTime appointment :appointmentDays) {
 
-					if (allAppointmentsByName.containsKey(appointmentName)) {
-						C501_Appointment__c appointmentUpdate = allAppointmentsByName.remove(appointmentName);
-						appointmentUpdate.Enable__c = true;
-						appointmentUpdate.Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c;
+					Integer numberIntervals = numberTimeIntervals;
+					appointmentDateTime = appointment;
 
-						updateAppointments.put(appointmentUpdate.Id, appointmentUpdate);
+					while (numberIntervals-- > 0) {
+						String appointmentName = appointmentDateTime.format('yyyy-MM-dd - HH:mm a');
+						String appointmentTimeDisplay = appointmentDateTime.format('HH:mm a');
+
+						System.debug('**********Internal: ' + String.valueOf(numberIntervals) + ' appointmentTimeDisplay: ' + appointmentTimeDisplay + ' Name: ' + appointmentName);
+
+						if (allAppointmentsByName.containsKey(appointmentName)) {
+							C501_Appointment__c appointmentUpdate = allAppointmentsByName.remove(appointmentName);
+							appointmentUpdate.Enable__c = true;
+							appointmentUpdate.Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c;
+
+							updateAppointments.put(appointmentUpdate.Id, appointmentUpdate);
+						}
+						else {
+							C501_Appointment__c appointmentScheduling = new C501_Appointment__c(
+								Name = appointmentName,
+								Name_Unique__c = appointmentName,
+								Appointment_Schedule__c = appointmentSchedule.Id,
+								Available_Time__c = appointment,
+								Date__c = appointmentDateTime.date(),
+								Time__c = appointmentTimeDisplay,
+								Enable__c = true,
+								Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c);
+
+							insertAppointments.put(appointmentName, appointmentScheduling);
+						}
+
+						// Increment by 15 minutes
+						appointmentDateTime = appointmentDateTime.addMinutes(15);
 					}
-					else {
-						C501_Appointment__c appointment = new C501_Appointment__c(
-							Name = appointmentName,
-							Name_Unique__c = appointmentName,
-							Appointment_Schedule__c = appointmentSchedule.Id,
-							Available_Time__c = appointmentDateTime,
-							Date__c = appointmentDateTime.date(),
-							Time__c = appointmentTimeDisplay,
-							Enable__c = true,
-							Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c);
-
-						insertAppointments.put(appointmentName, appointment);
-					}
-
-					// Increment by 15 minutes
-					appointmentDateTime = appointmentDateTime.addMinutes(15);
 				}
 			}
 			catch (Exception e) {
