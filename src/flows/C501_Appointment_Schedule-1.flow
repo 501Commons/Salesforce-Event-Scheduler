@@ -1,38 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Alert_Admin</name>
-        <label>Alert Admin</label>
-        <locationX>305</locationX>
-        <locationY>653</locationY>
-        <actionName>Contact.Admin_Setup_Appointments_Alert</actionName>
-        <actionType>emailAlert</actionType>
-        <connector>
-            <targetReference>Screen_Setup_Error</targetReference>
-        </connector>
-        <inputParameters>
-            <name>SObjectRowId</name>
-            <value>
-                <elementReference>varContact.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <assignments>
-        <name>Add_Evening_Appoinment</name>
-        <label>Add Evening Appoinment</label>
-        <locationX>800</locationX>
-        <locationY>782</locationY>
-        <assignmentItems>
-            <assignToReference>soTemplateAppointments</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>soAppointment</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Evening_Appointments</targetReference>
-        </connector>
-    </assignments>
     <assignments>
         <name>Clear_Error_Message</name>
         <label>Clear Error Message</label>
@@ -70,42 +37,6 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Queue_Appointment</name>
-        <label>Queue Appointment</label>
-        <locationX>93</locationX>
-        <locationY>770</locationY>
-        <assignmentItems>
-            <assignToReference>soAppointments</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>soAppointment</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Appointments</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Reset_Count</name>
-        <label>Reset Count</label>
-        <locationX>579</locationX>
-        <locationY>1037</locationY>
-        <assignmentItems>
-            <assignToReference>varAppointmentsCount</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <numberValue>0.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>soAppointments</assignToReference>
-            <operator>RemoveAll</operator>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Appointments</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Reset_Counter_Max_Appts</name>
         <label>Reset Counter Max Appts</label>
         <locationX>1300</locationX>
@@ -128,8 +59,8 @@
     <assignments>
         <name>Set_Appointment_Error</name>
         <label>Set Appt Invalid Day</label>
-        <locationX>161</locationX>
-        <locationY>545</locationY>
+        <locationX>937</locationX>
+        <locationY>629</locationY>
         <assignmentItems>
             <assignToReference>varErrorMessage</assignToReference>
             <operator>Assign</operator>
@@ -221,66 +152,6 @@
             <targetReference>Screen_Client_Info</targetReference>
         </connector>
     </assignments>
-    <assignments>
-        <name>Set_Error_Message_Invalid_Input</name>
-        <label>Set Error Message</label>
-        <locationX>222</locationX>
-        <locationY>49</locationY>
-        <assignmentItems>
-            <assignToReference>varErrorMessage</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>varTextTemplateInvalidInput</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Screen_Client_Info</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Update_Appointment</name>
-        <label>Update Appointment</label>
-        <locationX>93</locationX>
-        <locationY>897</locationY>
-        <assignmentItems>
-            <assignToReference>soAppointment.Available_Time__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>getNewAvailableTime</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varAppointmentsCount</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>soAppointment.Name</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>getNewAppointmentName</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>soAppointment.Date__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Screen_Appointment_Date</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>soAppointment.Name_Unique__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>getNewAppointmentNameUnique</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Queue_Appointment</targetReference>
-        </connector>
-    </assignments>
     <decisions>
         <name>Already_Scheduled</name>
         <label>Already Scheduled</label>
@@ -312,7 +183,7 @@
         <locationX>1056</locationX>
         <locationY>771</locationY>
         <defaultConnector>
-            <targetReference>Get_Template_Appointments</targetReference>
+            <targetReference>Set_Appointment_Error</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -357,117 +228,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Any_New_Appointments</name>
-        <label>Any New Appointments</label>
-        <locationX>402</locationX>
-        <locationY>775</locationY>
-        <defaultConnector>
-            <targetReference>Alert_Admin</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes_New_Appointments</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>varAppointmentsCount</leftValueReference>
-                <operator>GreaterThan</operator>
-                <rightValue>
-                    <numberValue>0.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Create_Appointments</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Fourth_Wednesday</name>
-        <label>Fourth Wednesday</label>
-        <locationX>735</locationX>
-        <locationY>1041</locationY>
-        <defaultConnector>
-            <targetReference>Reset_Count</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Fourth_Wednesday</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>getDayOfMonth</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
-                <rightValue>
-                    <numberValue>22.0</numberValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>getDayOfMonth</leftValueReference>
-                <operator>LessThanOrEqualTo</operator>
-                <rightValue>
-                    <numberValue>28.0</numberValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>getDayOfWeek</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Wednesday</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Template_Appointments_0_0</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Lookup_Type</name>
-        <label>Lookup Type</label>
-        <locationX>415</locationX>
-        <locationY>151</locationY>
-        <defaultConnector>
-            <targetReference>Get_Contact_DOB</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Name and DOB</defaultConnectorLabel>
-        <rules>
-            <name>Missing_Id_or_DOB</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>getScreen_Id_Number_Length</leftValueReference>
-                <operator>LessThanOrEqualTo</operator>
-                <rightValue>
-                    <numberValue>0.0</numberValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>getScreen_Birthdate_Length</leftValueReference>
-                <operator>LessThanOrEqualTo</operator>
-                <rightValue>
-                    <numberValue>0.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Set_Error_Message_Invalid_Input</targetReference>
-            </connector>
-            <label>Missing Id or DOB</label>
-        </rules>
-        <rules>
-            <name>Lookup_Name_and_Id</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>getScreen_Id_Number_Length</leftValueReference>
-                <operator>GreaterThan</operator>
-                <rightValue>
-                    <numberValue>0.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Contact</targetReference>
-            </connector>
-            <label>Name and Id</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Max_Appts_Restricted</name>
         <label>Max Appts Restricted</label>
         <locationX>1469</locationX>
@@ -493,45 +253,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Second_Wednesday</name>
-        <label>Second Wednesday</label>
-        <locationX>886</locationX>
-        <locationY>1036</locationY>
-        <defaultConnector>
-            <targetReference>Fourth_Wednesday</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Second_Wednesday</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>getDayOfMonth</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
-                <rightValue>
-                    <numberValue>8.0</numberValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>getDayOfMonth</leftValueReference>
-                <operator>LessThanOrEqualTo</operator>
-                <rightValue>
-                    <numberValue>14.0</numberValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>getDayOfWeek</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Wednesday</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Template_Appointments_0</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Senior_Day_Restricted</name>
         <label>Senior Day Restricted</label>
         <locationX>1473</locationX>
@@ -544,10 +265,10 @@
             <name>Yes_Senior_Day</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>getDayOfWeek</leftValueReference>
+                <leftValueReference>soAppointment.Senior_Only_Appointments_60_and_over__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Thursday</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -589,52 +310,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Valid_Day</name>
-        <label>Valid Day</label>
-        <locationX>400</locationX>
-        <locationY>544</locationY>
-        <defaultConnector>
-            <targetReference>Set_Appointment_Error</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Valid_Day</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>getDayOfWeek</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Monday</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>getDayOfWeek</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Wednesday</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>getDayOfWeek</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Thursday</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>getDayOfWeek</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Friday</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Appointment</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Valid_Incoming_Id</name>
         <label>Valid Incoming Id</label>
         <locationX>110</locationX>
@@ -659,21 +334,28 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <description>Prompt for Email Address if Blank</description>
+    <description>Appointment Manager</description>
     <dynamicChoiceSets>
         <name>GetTimes</name>
         <dataType>String</dataType>
         <displayField>Summary__c</displayField>
         <filters>
-            <field>C501_Scheduled_Appointments__c</field>
-            <operator>LessThan</operator>
+            <field>Appointments_Full__c</field>
+            <operator>EqualTo</operator>
             <value>
-                <numberValue>5.0</numberValue>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Enable__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <filters>
             <field>Name</field>
-            <operator>Contains</operator>
+            <operator>StartsWith</operator>
             <value>
                 <elementReference>getNewAppointmentName</elementReference>
             </value>
@@ -711,18 +393,6 @@
         <expression>TEXT({!soScheduledAppointment.Date__c}) + &quot; &quot; + {!soScheduledAppointment.Time__c} + &quot;, &quot;</expression>
     </formulas>
     <formulas>
-        <name>getDayOfMonth</name>
-        <dataType>Number</dataType>
-        <expression>DAY({!Screen_Appointment_Date})</expression>
-        <scale>0</scale>
-    </formulas>
-    <formulas>
-        <name>getDayOfWeek</name>
-        <dataType>String</dataType>
-        <expression>CASE( MOD( {!Screen_Appointment_Date} - DATE(1900, 1, 7), 7), 0, &quot;Sunday&quot;, 1, &quot;Monday&quot;, 2, &quot;Tuesday&quot;, 3,
-&quot;Wednesday&quot;, 4, &quot;Thursday&quot;, 5, &quot;Friday&quot;, 6, &quot;Saturday&quot;,&quot;Error&quot;)</expression>
-    </formulas>
-    <formulas>
         <name>getEmailSummary</name>
         <dataType>String</dataType>
         <expression>IF (CONTAINS({!Screen_Appointment_Email}, &quot;@&quot;), 
@@ -749,106 +419,15 @@
     <formulas>
         <name>getNewAppointmentName</name>
         <dataType>String</dataType>
-        <expression>TEXT({!Screen_Appointment_Date}) + &quot; - &quot; + {!getDayOfWeek} + &quot; Appointments&quot;</expression>
-    </formulas>
-    <formulas>
-        <name>getNewAppointmentNameUnique</name>
-        <dataType>String</dataType>
-        <expression>TEXT({!Screen_Appointment_Date}) + &quot; - &quot; + {!getDayOfWeek} + &quot; Appointments &quot; + {!soAppointment.Time__c}</expression>
+        <expression>TEXT({!Screen_Appointment_Date})</expression>
     </formulas>
     <formulas>
         <name>getNewAppointmentScheduledName</name>
         <dataType>String</dataType>
         <expression>{!varContact.Name} + &quot; Appointment Scheduled&quot;</expression>
     </formulas>
-    <formulas>
-        <description>Note: This creates a time that is +2 hours than it is supposed to be in a DateTime field.  Yet when set on the Event is the correct time.</description>
-        <name>getNewAvailableTime</name>
-        <dataType>DateTime</dataType>
-        <expression>{!soAppointment.Available_Time__c} + 
-(({!Screen_Appointment_Date} - {!soAppointment.Date__c}) - 1/24)</expression>
-    </formulas>
-    <formulas>
-        <name>getNextAppointmentDate</name>
-        <dataType>Date</dataType>
-        <expression>Date(
-  YEAR({!Screen_Appointment_Date}),
-  MONTH({!Screen_Appointment_Date}),
-  DAY({!Screen_Appointment_Date}) + 1)</expression>
-    </formulas>
-    <formulas>
-        <name>getScreen_Birthdate_Length</name>
-        <dataType>Number</dataType>
-        <expression>LEN(TEXT({!Screen_Birthdate}))</expression>
-        <scale>0</scale>
-    </formulas>
-    <formulas>
-        <name>getScreen_Id_Number_Length</name>
-        <dataType>Number</dataType>
-        <expression>LEN({!Screen_Id_Number})</expression>
-        <scale>0</scale>
-    </formulas>
-    <formulas>
-        <name>getTemplateName</name>
-        <dataType>String</dataType>
-        <expression>&quot;Template &quot; + {!getDayOfWeek}</expression>
-    </formulas>
-    <formulas>
-        <name>getTemplateNameFourthWed</name>
-        <dataType>String</dataType>
-        <expression>&quot;Template Fourth &quot; + {!getDayOfWeek}</expression>
-    </formulas>
-    <formulas>
-        <name>getTemplateNameSecondWed</name>
-        <dataType>String</dataType>
-        <expression>&quot;Template Second &quot; + {!getDayOfWeek}</expression>
-    </formulas>
-    <formulas>
-        <name>getUserTimezoneOffset</name>
-        <dataType>Number</dataType>
-        <expression>(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 00:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 01:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 02:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 03:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 04:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 05:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 06:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 07:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 08:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 09:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 10:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 11:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 12:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 13:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 14:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 15:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 16:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 17:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 18:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 19:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 20:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 21:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 22:00:00&quot;)) - TODAY()) + 
-(DATEVALUE(DATETIMEVALUE(TEXT(TODAY())+&quot; 23:00:00&quot;)) - TODAY())</expression>
-        <scale>0</scale>
-    </formulas>
     <interviewLabel>Appointment Schedule {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Appointment Schedule</label>
-    <loops>
-        <name>Loop_Appointments</name>
-        <label>Loop Appointments</label>
-        <locationX>399</locationX>
-        <locationY>898</locationY>
-        <assignNextValueToReference>soAppointment</assignNextValueToReference>
-        <collectionReference>soTemplateAppointments</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Update_Appointment</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Any_New_Appointments</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <loops>
         <name>Loop_Appts</name>
         <label>Loop Appts</label>
@@ -862,21 +441,6 @@
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Max_Appts_Restricted</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-    <loops>
-        <name>Loop_Evening_Appointments</name>
-        <label>Loop Evening Appointments</label>
-        <locationX>582</locationX>
-        <locationY>787</locationY>
-        <assignNextValueToReference>soAppointment</assignNextValueToReference>
-        <collectionReference>soTemplateEveningAppointments</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Add_Evening_Appoinment</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Reset_Count</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processType>Flow</processType>
@@ -920,16 +484,6 @@
             </value>
         </inputAssignments>
         <object>C501_Appointment_Scheduled__c</object>
-    </recordCreates>
-    <recordCreates>
-        <name>Create_Appointments</name>
-        <label>Create Appointments</label>
-        <locationX>486</locationX>
-        <locationY>651</locationY>
-        <connector>
-            <targetReference>Get_Appointment</targetReference>
-        </connector>
-        <inputReference>soAppointments</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Appointments_This_Month</name>
@@ -1008,12 +562,19 @@
     <recordLookups>
         <name>Get_Appointment</name>
         <label>Get Appointment</label>
-        <locationX>631</locationX>
-        <locationY>539</locationY>
+        <locationX>775</locationX>
+        <locationY>771</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Any_Appointments</targetReference>
         </connector>
+        <filters>
+            <field>Enable__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <filters>
             <field>Name</field>
             <operator>Contains</operator>
@@ -1037,15 +598,22 @@
             <targetReference>Any_Available_Appointments</targetReference>
         </connector>
         <filters>
-            <field>C501_Scheduled_Appointments__c</field>
-            <operator>LessThan</operator>
+            <field>Appointments_Full__c</field>
+            <operator>EqualTo</operator>
             <value>
-                <numberValue>5.0</numberValue>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Enable__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <filters>
             <field>Name</field>
-            <operator>Contains</operator>
+            <operator>StartsWith</operator>
             <value>
                 <elementReference>getNewAppointmentName</elementReference>
             </value>
@@ -1064,61 +632,12 @@
             <field>Id</field>
         </outputAssignments>
         <outputAssignments>
+            <assignToReference>soAppointment.Senior_Only_Appointments_60_and_over__c</assignToReference>
+            <field>Senior_Only_Appointments_60_and_over__c</field>
+        </outputAssignments>
+        <outputAssignments>
             <assignToReference>soAppointment.Time__c</assignToReference>
             <field>Time__c</field>
-        </outputAssignments>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Contact</name>
-        <label>Get Contact</label>
-        <locationX>413</locationX>
-        <locationY>275</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Valid_Contact</targetReference>
-        </connector>
-        <filters>
-            <field>Id_Number__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>Screen_Id_Number</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>LastName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>Screen_Last_Name</elementReference>
-            </value>
-        </filters>
-        <object>Contact</object>
-        <outputAssignments>
-            <assignToReference>varContact.AccountId</assignToReference>
-            <field>AccountId</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varContact.Birthdate</assignToReference>
-            <field>Birthdate</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varContact.Email</assignToReference>
-            <field>Email</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varContact.FirstName</assignToReference>
-            <field>FirstName</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varContact.Id</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varContact.LastName</assignToReference>
-            <field>LastName</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varContact.Name</assignToReference>
-            <field>Name</field>
         </outputAssignments>
     </recordLookups>
     <recordLookups>
@@ -1170,8 +689,8 @@
     <recordLookups>
         <name>Get_Contact_DOB</name>
         <label>Get Contact by DOB</label>
-        <locationX>609</locationX>
-        <locationY>274</locationY>
+        <locationX>416</locationX>
+        <locationY>170</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Valid_Contact</targetReference>
@@ -1219,78 +738,6 @@
             <assignToReference>varContact.Name</assignToReference>
             <field>Name</field>
         </outputAssignments>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Template_Appointments</name>
-        <label>Get Template Appointments</label>
-        <locationX>1062</locationX>
-        <locationY>1032</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Second_Wednesday</targetReference>
-        </connector>
-        <filters>
-            <field>Name</field>
-            <operator>Contains</operator>
-            <value>
-                <elementReference>getTemplateName</elementReference>
-            </value>
-        </filters>
-        <object>C501_Appointment__c</object>
-        <outputReference>soTemplateAppointments</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Available_Time__c</queriedFields>
-        <queriedFields>Time__c</queriedFields>
-        <queriedFields>Summary__c</queriedFields>
-        <queriedFields>Date__c</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Template_Appointments_0</name>
-        <label>Get Template Appointments</label>
-        <locationX>887</locationX>
-        <locationY>916</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Loop_Evening_Appointments</targetReference>
-        </connector>
-        <filters>
-            <field>Name</field>
-            <operator>Contains</operator>
-            <value>
-                <elementReference>getTemplateNameSecondWed</elementReference>
-            </value>
-        </filters>
-        <object>C501_Appointment__c</object>
-        <outputReference>soTemplateEveningAppointments</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Available_Time__c</queriedFields>
-        <queriedFields>Time__c</queriedFields>
-        <queriedFields>Summary__c</queriedFields>
-        <queriedFields>Date__c</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Template_Appointments_0_0</name>
-        <label>Get Template Appointments</label>
-        <locationX>735</locationX>
-        <locationY>919</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Loop_Evening_Appointments</targetReference>
-        </connector>
-        <filters>
-            <field>Name</field>
-            <operator>Contains</operator>
-            <value>
-                <elementReference>getTemplateNameFourthWed</elementReference>
-            </value>
-        </filters>
-        <object>C501_Appointment__c</object>
-        <outputReference>soTemplateEveningAppointments</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Available_Time__c</queriedFields>
-        <queriedFields>Time__c</queriedFields>
-        <queriedFields>Summary__c</queriedFields>
-        <queriedFields>Date__c</queriedFields>
     </recordLookups>
     <screens>
         <name>Screen_Appointment_Scheduled</name>
@@ -1367,7 +814,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Lookup_Type</targetReference>
+            <targetReference>Get_Contact_DOB</targetReference>
         </connector>
         <fields>
             <name>Screen_Info_Error</name>
@@ -1389,7 +836,7 @@
         </fields>
         <fields>
             <name>Screen_Client_Info_Provide</name>
-            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:20px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;1&quot;&gt;Please provide your last name and either your state ID number or birthdate to schedule an appointment.&lt;FONT STYLE=&quot;font-size:16px&quot;&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
+            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:20px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;1&quot;&gt;Please provide your last name and birthdate to schedule an appointment.&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -1417,26 +864,11 @@
             </validationRule>
         </fields>
         <fields>
-            <name>Screen_Id_Number</name>
-            <dataType>String</dataType>
-            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:20px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;State ID Number&lt;/B&gt;&lt;FONT STYLE=&quot;font-size:16px&quot;&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
-            <validationRule>
-                <errorMessage>The value you entered doesn&apos;t meet the validation criteria for this input field.</errorMessage>
-                <formulaExpression>LEN({!Screen_Id_Number}) &lt;= 22 &amp;&amp; (LEN({!Screen_Id_Number}) &gt; 0 || LEN(TEXT({!Screen_Birthdate})) &gt; 0)</formulaExpression>
-            </validationRule>
-        </fields>
-        <fields>
             <name>Screen_Birthdate</name>
             <dataType>Date</dataType>
             <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:20px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;Birthdate&lt;/B&gt;&lt;FONT STYLE=&quot;font-size:16px&quot;&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
             <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
-            <validationRule>
-                <errorMessage>The value you entered doesn&apos;t meet the validation criteria for this input field.</errorMessage>
-                <formulaExpression>LEN({!Screen_Id_Number}) &gt; 0 || LEN(TEXT({!Screen_Birthdate})) &gt; 0</formulaExpression>
-            </validationRule>
+            <isRequired>true</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -1450,7 +882,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Valid_Day</targetReference>
+            <targetReference>Get_Appointment</targetReference>
         </connector>
         <fields>
             <name>Screen_Appointment_Error</name>
@@ -1491,8 +923,8 @@
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <validationRule>
-                <errorMessage>The value you entered doesn&apos;t meet the validation criteria for this input field.  Select a valid date of today or in the future.  NOTE: August Appointments are full so pick a date after August.</errorMessage>
-                <formulaExpression>{!Screen_Appointment_Date} &gt;= {!$Flow.CurrentDate} &amp;&amp; {!Screen_Appointment_Date} &gt;= DATEVALUE(&quot;2018-09-01&quot;)</formulaExpression>
+                <errorMessage>The value you entered doesn&apos;t meet the validation criteria for this input field.  Select a valid date of today or in the future.</errorMessage>
+                <formulaExpression>{!Screen_Appointment_Date} &gt;= {!$Flow.CurrentDate}</formulaExpression>
             </validationRule>
         </fields>
         <fields>
@@ -1570,31 +1002,6 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <screens>
-        <name>Screen_Setup_Error</name>
-        <label>Screen Setup Error</label>
-        <locationX>138</locationX>
-        <locationY>650</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>Screen_Error_Title</name>
-            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:24px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;1&quot;&gt;We&amp;apos;re sorry, but we&amp;apos;ve encountered a technical issue.&lt;FONT STYLE=&quot;font-size:22px&quot;&gt; &lt;/FONT&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Screen_Error_Spacer1</name>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Screen_Setup_Error_Info</name>
-            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:20px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;Please contact White Center Food Bank at &lt;B&gt;(206) 762-2848&lt;/B&gt; between 8:00 a.m. - 4:00 p.m. Monday through Friday for help scheduling your appointment. &lt;FONT STYLE=&quot;font-size:16px&quot;&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:16px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
     <startElementReference>Valid_Incoming_Id</startElementReference>
     <textTemplates>
         <name>varTextTemplateAgeInvalid</name>
@@ -1602,7 +1009,7 @@
     </textTemplates>
     <textTemplates>
         <name>varTextTemplateAppointmentDayInvalid</name>
-        <text>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:22px&quot; COLOR=&quot;#FF0000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;We&amp;apos;re sorry, but appointments aren&amp;apos;t available on &lt;FONT KERNING=&quot;1&quot;&gt;{!getDayOfWeek}&lt;/FONT&gt;.  Select a Monday, Wednesday, Thursday, or Friday.&lt;/FONT&gt;&lt;/DIV&gt;</text>
+        <text>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:22px&quot; COLOR=&quot;#FF0000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;We&amp;apos;re sorry, but no appointments are available on {!Screen_Appointment_Date}.&lt;/FONT&gt;&lt;/DIV&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>varTextTemplateErrorAlreadyScheduled</name>
@@ -1610,11 +1017,7 @@
     </textTemplates>
     <textTemplates>
         <name>varTextTemplateFoodBankServiceHours</name>
-        <text>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:16px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;Service Hours&lt;/B&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Monday: &lt;/I&gt;12:00 p.m. to 4:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Tuesday: &lt;/I&gt;CLOSED&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Wednesday: &lt;/I&gt;10:00 a.m. to 2:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Thursday: &lt;/I&gt;10:00 a.m. to 2:00 p.m. (for seniors 60 years and over only)&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Friday: &lt;/I&gt;10:00 a.m. to 2:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;2nd and 4th Wednesday of each month: &lt;/I&gt;4:00 p.m. to 7:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;</text>
-    </textTemplates>
-    <textTemplates>
-        <name>varTextTemplateInvalidInput</name>
-        <text>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:22px&quot; COLOR=&quot;#FF0000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;1&quot;&gt;We&amp;apos;re sorry, but a state ID Number or birthdate is required to access the system.  Please try again or reach out to White Center Food Bank for scheduling help at (206) 762-2848.&lt;/FONT&gt;&lt;/DIV&gt;</text>
+        <text>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:16px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;General Service Hours (Day and Times may vary)&lt;/B&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Monday: &lt;/I&gt;12:00 p.m. to 4:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Tuesday: &lt;/I&gt;CLOSED&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Wednesday: &lt;/I&gt;10:00 a.m. to 2:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Thursday: &lt;/I&gt;10:00 a.m. to 2:00 p.m. (for seniors 60 years and over only)&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Friday: &lt;/I&gt;10:00 a.m. to 2:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;2nd and 4th Wednesday of each month: &lt;/I&gt;4:00 p.m. to 7:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>varTextTemplateMaxAppointments</name>
@@ -1622,7 +1025,7 @@
     </textTemplates>
     <textTemplates>
         <name>varTextTemplateNoContact</name>
-        <text>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:22px&quot; COLOR=&quot;#FF0000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;We&amp;apos;re sorry, but your contact information not found in the our records.  Please try again or reach out to White Center Food Bank for scheduling help at (206) 762-2848.&lt;/FONT&gt;&lt;/DIV&gt;</text>
+        <text>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:22px&quot; COLOR=&quot;#FF0000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;We&amp;apos;re sorry, but your contact information was not found in the our records.  Please try again or reach out to White Center Food Bank for scheduling help at (206) 762-2848.&lt;/FONT&gt;&lt;/DIV&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>varTextTemplateNoTimes</name>
@@ -1632,14 +1035,6 @@
         <name>soAppointment</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>C501_Appointment__c</objectType>
-    </variables>
-    <variables>
-        <name>soAppointments</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>C501_Appointment__c</objectType>
@@ -1661,29 +1056,6 @@
         <objectType>C501_Appointment_Scheduled__c</objectType>
     </variables>
     <variables>
-        <name>soTemplateAppointments</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>C501_Appointment__c</objectType>
-    </variables>
-    <variables>
-        <name>soTemplateEveningAppointments</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>C501_Appointment__c</objectType>
-    </variables>
-    <variables>
-        <name>varAppointmentDay</name>
-        <dataType>Date</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
         <name>varAppointmentId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -1696,14 +1068,6 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varAppointmentsCount</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
     </variables>
     <variables>
         <name>varAppointmentsThisMonth</name>

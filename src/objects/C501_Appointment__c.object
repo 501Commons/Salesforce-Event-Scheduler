@@ -132,6 +132,14 @@
         <unique>true</unique>
     </fields>
     <fields>
+        <fullName>Senior_Only_Appointments_60_and_over__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Senior Only Appointments (60 and over)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Summary__c</fullName>
         <externalId>false</externalId>
         <formula>Time__c + &quot; (&quot; + TEXT(Maximum_Scheduled_Appointments__c - C501_Scheduled_Appointments__c) + &quot; Remaining)&quot;</formula>
