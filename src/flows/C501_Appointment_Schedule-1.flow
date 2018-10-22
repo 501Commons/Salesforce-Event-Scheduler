@@ -377,7 +377,7 @@
             <assignToReference>soAppointment.Summary__c</assignToReference>
             <field>Summary__c</field>
         </outputAssignments>
-        <sortField>Summary__c</sortField>
+        <sortField>Available_Time__c</sortField>
         <sortOrder>Asc</sortOrder>
         <valueField>Id</valueField>
     </dynamicChoiceSets>
@@ -876,8 +876,8 @@
     <screens>
         <name>Screen_Select_Appointment</name>
         <label>Screen Select Appointment</label>
-        <locationX>758</locationX>
-        <locationY>375</locationY>
+        <locationX>760</locationX>
+        <locationY>376</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -948,7 +948,7 @@
         <name>Screen_Select_Appointment_Time</name>
         <label>Screen Select Appointment Time</label>
         <locationX>1675</locationX>
-        <locationY>504</locationY>
+        <locationY>505</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
