@@ -129,6 +129,12 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 
 						if (allAppointmentsByName.containsKey(appointmentName)) {
 							C501_Appointment__c appointmentUpdate = allAppointmentsByName.remove(appointmentName);
+
+							appointmentUpdate.Appointment_Schedule__c = appointmentSchedule.Id;
+							appointmentUpdate.Available_Time__c = appointmentDateTime;
+							appointmentUpdate.Date__c = appointmentDateTime.date();
+							appointmentUpdate.Time__c = appointmentTimeDisplay;
+
 							appointmentUpdate.Enable__c = true;
 							appointmentUpdate.Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c;
 							appointmentUpdate.Senior_Only_Appointments_60_and_over__c = appointmentSchedule.Senior_Only_Appointments_60_and_over__c;
@@ -140,7 +146,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 								Name = appointmentName,
 								Name_Unique__c = appointmentName,
 								Appointment_Schedule__c = appointmentSchedule.Id,
-								Available_Time__c = appointment,
+								Available_Time__c = appointmentDateTime,
 								Date__c = appointmentDateTime.date(),
 								Time__c = appointmentTimeDisplay,
 								Enable__c = true,
