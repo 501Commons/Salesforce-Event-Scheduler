@@ -22,7 +22,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 		List<C501_Appointment__c> allAppointments = [
 			SELECT Id, Name, Appointment_Schedule__c, Enable__c, Maximum_Scheduled_Appointments__c
 			FROM C501_Appointment__c
-			WHERE Enable__c = true AND Date__c >= :dateQuery];
+			WHERE Date__c >= :dateQuery];
 
 		// Step1: Disable all related Appointments
 		Map<String, C501_Appointment__c> allAppointmentsByName = new Map<String, C501_Appointment__c>();
@@ -36,10 +36,10 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 					if (appointment.Appointment_Schedule__c == appointmentSchedule.Id) {
 						appointment.Enable__c = false;
 						updateAppointments.put(appointment.Id, appointment);
-
-						// Build ByName map for processing later
-						allAppointmentsByName.put(appointment.Name, appointment);
 					}
+
+					// Build ByName map for processing later
+					allAppointmentsByName.put(appointment.Name, appointment);
 				}
 			}
 			catch (Exception e) {
@@ -118,9 +118,12 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 					Integer numberIntervals = numberTimeIntervals;
 					appointmentDateTime = appointment;
 
+					// Salesforce Apex DateTime Rounding Error - make sure starting on same start hour
+					appointmentDateTime = appointmentDateTime.addHours(appointmentSchedule.Scheduled_Start_Date_Time__c.hour() - appointmentDateTime.hour());
+
 					while (numberIntervals-- > 0) {
-						String appointmentName = appointmentDateTime.format('yyyy-MM-dd - HH:mm a');
-						String appointmentTimeDisplay = appointmentDateTime.format('HH:mm a');
+						String appointmentName = appointmentDateTime.format('yyyy-MM-dd - hh:mm a');
+						String appointmentTimeDisplay = appointmentDateTime.format('hh:mm a');
 
 						System.debug('**********Internal: ' + String.valueOf(numberIntervals) + ' appointmentTimeDisplay: ' + appointmentTimeDisplay + ' Name: ' + appointmentName);
 
@@ -128,6 +131,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 							C501_Appointment__c appointmentUpdate = allAppointmentsByName.remove(appointmentName);
 							appointmentUpdate.Enable__c = true;
 							appointmentUpdate.Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c;
+							appointmentUpdate.Senior_Only_Appointments_60_and_over__c = appointmentSchedule.Senior_Only_Appointments_60_and_over__c;
 
 							updateAppointments.put(appointmentUpdate.Id, appointmentUpdate);
 						}
@@ -140,7 +144,8 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 								Date__c = appointmentDateTime.date(),
 								Time__c = appointmentTimeDisplay,
 								Enable__c = true,
-								Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c);
+								Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c,
+								Senior_Only_Appointments_60_and_over__c = appointmentSchedule.Senior_Only_Appointments_60_and_over__c);
 
 							insertAppointments.put(appointmentName, appointmentScheduling);
 						}
