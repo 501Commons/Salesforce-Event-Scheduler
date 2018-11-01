@@ -20,30 +20,31 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 		//
 		Date dateQuery = system.today();
 		List<C501_Appointment__c> allAppointments = [
-			SELECT Id, Name, Appointment_Schedule__c, Enable__c, Maximum_Scheduled_Appointments__c
+			SELECT Id, Name, Appointment_Schedule__c, Enable__c, Enable_Previous__c, Maximum_Scheduled_Appointments__c
 			FROM C501_Appointment__c
 			WHERE Date__c >= :dateQuery];
 
-		// Step1: Disable all related Appointments
+		// Process all appointments to make sure appointments have the right parent
+		List<C501_Appointment_Schedule__c> allAppointmentSchedules = [
+			SELECT Id, Enable__c, Scheduled_Start_Date_Time__c, Scheduled_End_Time__c, Range_Of_Recurrence_End_By__c, Days_of_Week__c, Weekly_Occurrence__c,
+				Number_Appointments_per_15_min_interval__c, Senior_Only_Appointments_60_and_over__c
+			FROM C501_Appointment_Schedule__c
+			WHERE Enable__c = true];
+
+		// Step1: Disable all Appointments
 		Map<String, C501_Appointment__c> allAppointmentsByName = new Map<String, C501_Appointment__c>();
 		Map<Id, C501_Appointment__c> updateAppointments = new Map<Id, C501_Appointment__c>();
-		for ( C501_Appointment_Schedule__c appointmentSchedule :appointmentScheduleList ) {
-
+		for ( C501_Appointment__c appointment:allAppointments) {
 			try {
-				// Walk thru all appointments to get all related to the appointment schedule
-				for ( C501_Appointment__c appointment :allAppointments) {
+				appointment.Enable_Previous__c = appointment.Enable__c;
+				appointment.Enable__c = false;
+				updateAppointments.put(appointment.Id, appointment);
 
-					if (appointment.Appointment_Schedule__c == appointmentSchedule.Id) {
-						appointment.Enable__c = false;
-						updateAppointments.put(appointment.Id, appointment);
-					}
-
-					// Build ByName map for processing later
-					allAppointmentsByName.put(appointment.Name, appointment);
-				}
+				// Build ByName map for processing later
+				allAppointmentsByName.put(appointment.Name, appointment);
 			}
 			catch (Exception e) {
-				appointmentSchedule.AddError('updateAppointmentSchedule::Exception - ' + String.valueOf(e));
+				appointmentScheduleList[0].AddError('updateAppointmentSchedule::Exception - ' + String.valueOf(e));
 				continue;
 			}
 		}
@@ -57,7 +58,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 		Map<String, C501_Appointment__c> insertAppointments = new Map<String, C501_Appointment__c>();
 
 		// Step2: Update all related Appointments and create new Appointments
-		for ( C501_Appointment_Schedule__c appointmentSchedule :appointmentScheduleList ) {
+		for ( C501_Appointment_Schedule__c appointmentSchedule :allAppointmentSchedules ) {
 
 			if (!appointmentSchedule.Enable__c) {
 				continue;
@@ -135,7 +136,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 							appointmentUpdate.Date__c = appointmentDateTime.date();
 							appointmentUpdate.Time__c = appointmentTimeDisplay;
 
-							appointmentUpdate.Enable__c = true;
+							appointmentUpdate.Enable__c = appointmentUpdate.Enable_Previous__c;
 							appointmentUpdate.Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c;
 							appointmentUpdate.Senior_Only_Appointments_60_and_over__c = appointmentSchedule.Senior_Only_Appointments_60_and_over__c;
 
@@ -162,7 +163,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 				}
 			}
 			catch (Exception e) {
-				appointmentSchedule.AddError('updateAppointmentSchedule::Exception - ' + String.valueOf(e));
+				appointmentScheduleList[0].AddError('updateAppointmentSchedule::Exception - ' + String.valueOf(e));
 				continue;
 			}
 		}
