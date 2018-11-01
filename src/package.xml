@@ -47,19 +47,7 @@
     </types>
     <types>
         <members>C501_Appointment_Schedule-1</members>
-        <members>C501_Appointment_Schedule_Event-1</members>
-        <members>C501_Appointment_Schedule_Event-2</members>
         <name>Flow</name>
-    </types>
-    <types>
-        <members>Logo_Appointment_Schedule</members>
-        <members>Logo_Client</members>
-        <name>StaticResource</name>
-    </types>
-    <types>
-        <members>C501_Appointment_Scheduled__c.Event_Notification_Alert</members>
-        <members>Contact.Admin_Setup_Appointments_Alert</members>
-        <name>WorkflowAlert</name>
     </types>
     <types>
         <members>C501_Appointment_Schedule__c-Appointment Schedule Layout</members>
@@ -81,6 +69,16 @@
     <types>
         <members>Appointments_Scheduled</members>
         <name>ReportType</name>
-    </types>    
+    </types>
+    <types>
+        <members>Logo_Appointment_Schedule</members>
+        <members>Logo_Client</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
+        <members>C501_Appointment_Scheduled__c.Event_Notification_Alert</members>
+        <members>Contact.Admin_Setup_Appointments_Alert</members>
+        <name>WorkflowAlert</name>
+    </types>
     <version>42.0</version>
 </Package>

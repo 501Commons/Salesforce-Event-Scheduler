@@ -235,7 +235,7 @@
         <defaultConnector>
             <targetReference>Screen_Select_Appointment_Time</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
         <rules>
             <name>Yes_Max_Restricted</name>
             <conditionLogic>and</conditionLogic>
@@ -243,7 +243,7 @@
                 <leftValueReference>varAppointmentsThisMonth</leftValueReference>
                 <operator>GreaterThanOrEqualTo</operator>
                 <rightValue>
-                    <numberValue>3.0</numberValue>
+                    <numberValue>2.0</numberValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -334,7 +334,7 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <description>Appointment Manager</description>
+    <description>Appointment Manager - limit monthly appointments to 2</description>
     <dynamicChoiceSets>
         <name>GetTimes</name>
         <dataType>String</dataType>
