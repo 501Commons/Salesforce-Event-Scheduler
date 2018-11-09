@@ -32,10 +32,6 @@
                 <field>Enable__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Duration_In_Hours__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Appointment_Start_Date__c</field>
             </layoutItems>

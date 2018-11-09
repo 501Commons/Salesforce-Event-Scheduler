@@ -134,7 +134,7 @@
     </fields>
     <fields>
         <fullName>Number_Appointments_per_15_min_interval__c</fullName>
-        <defaultValue>5</defaultValue>
+        <defaultValue>7</defaultValue>
         <externalId>false</externalId>
         <label>Number Appointments per 15 min interval</label>
         <precision>18</precision>
@@ -187,16 +187,6 @@
             <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
-                <value>
-                    <fullName>Every</fullName>
-                    <default>false</default>
-                    <label>Every</label>
-                </value>
-                <value>
-                    <fullName>Alternate</fullName>
-                    <default>false</default>
-                    <label>Alternate</label>
-                </value>
                 <value>
                     <fullName>1st</fullName>
                     <default>false</default>

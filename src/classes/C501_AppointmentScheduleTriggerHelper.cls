@@ -29,7 +29,8 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 			SELECT Id, Enable__c, Scheduled_Start_Date_Time__c, Scheduled_End_Time__c, Range_Of_Recurrence_End_By__c, Days_of_Week__c, Weekly_Occurrence__c,
 				Number_Appointments_per_15_min_interval__c, Senior_Only_Appointments_60_and_over__c
 			FROM C501_Appointment_Schedule__c
-			WHERE Enable__c = true];
+			WHERE Enable__c = true
+			ORDER BY LastModifiedDate ASC];
 
 		// Step1: Disable all Appointments
 		Map<String, C501_Appointment__c> allAppointmentsByName = new Map<String, C501_Appointment__c>();
