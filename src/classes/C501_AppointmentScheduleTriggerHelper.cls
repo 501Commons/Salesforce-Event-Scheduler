@@ -116,6 +116,11 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 
 				for (DateTime appointment :appointmentDays) {
 
+					// Skip processing times that are in the past
+					if (appointment < dateQuery) {
+						continue;
+					}
+
 					Integer numberIntervals = numberTimeIntervals;
 					appointmentDateTime = appointment;
 
@@ -126,10 +131,10 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 						String appointmentName = appointmentDateTime.format('yyyy-MM-dd - hh:mm a');
 						String appointmentTimeDisplay = appointmentDateTime.format('hh:mm a');
 
-						System.debug('**********Internal: ' + String.valueOf(numberIntervals) + ' appointmentTimeDisplay: ' + appointmentTimeDisplay + ' Name: ' + appointmentName);
+						System.debug('**********Interval: ' + String.valueOf(numberIntervals) + ' appointmentTimeDisplay: ' + appointmentTimeDisplay + ' Name: ' + appointmentName);
 
 						if (allAppointmentsByName.containsKey(appointmentName)) {
-							C501_Appointment__c appointmentUpdate = allAppointmentsByName.remove(appointmentName);
+							C501_Appointment__c appointmentUpdate = allAppointmentsByName.get(appointmentName);
 
 							appointmentUpdate.Appointment_Schedule__c = appointmentSchedule.Id;
 							appointmentUpdate.Available_Time__c = appointmentDateTime;
