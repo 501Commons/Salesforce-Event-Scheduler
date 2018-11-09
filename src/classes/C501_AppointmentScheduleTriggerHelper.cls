@@ -18,11 +18,11 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 		//
 		// Perform all SOQL Queries outside of loop to avoid Salesforce Governor Limits: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm
 		//
-		Date dateQuery = system.today();
+		Date dateToday = system.today();
 		List<C501_Appointment__c> allAppointments = [
 			SELECT Id, Name, Appointment_Schedule__c, Enable__c, Enable_Previous__c, Maximum_Scheduled_Appointments__c
 			FROM C501_Appointment__c
-			WHERE Date__c >= :dateQuery];
+			WHERE Date__c >= :dateToday];
 
 		// Process all appointments to make sure appointments have the right parent
 		List<C501_Appointment_Schedule__c> allAppointmentSchedules = [
@@ -118,7 +118,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 				for (DateTime appointment :appointmentDays) {
 
 					// Skip processing times that are in the past
-					if (appointment < dateQuery) {
+					if (appointment.date() < dateToday) {
 						continue;
 					}
 
