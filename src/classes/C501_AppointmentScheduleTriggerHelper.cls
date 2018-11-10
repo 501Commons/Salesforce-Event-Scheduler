@@ -73,16 +73,11 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 
 				while (appointmentSchedule.Range_Of_Recurrence_End_By__c != null &&
 					appointmentDateTime.date() <= appointmentSchedule.Range_Of_Recurrence_End_By__c) {
-					
+
 					// Set appointmentDateTime to first day of the month
 					appointmentDateTime = appointmentDateTime.addDays(-1 * (appointmentDateTime.day() - 1));
 
 					for ( Integer weekday = 0; weekday <= 6; weekday++ ) {
-
-						if (appointmentDateTime < appointmentSchedule.Scheduled_Start_Date_Time__c) {
-							appointmentDateTime = appointmentDateTime.addDays(1);
-							continue;
-						}
 
 						String dayOfWeek = appointmentDateTime.format('E');
 						System.debug('**********dayOfWeek: ' + dayOfWeek + ' appointmentSchedule.Days_of_Week__c: ' + appointmentSchedule.Days_of_Week__c);
@@ -93,7 +88,10 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 								Integer weeklyOccuranceFactor = Integer.valueOf(weeklyOccurence.left(1)) - 1;
 								DateTime appointmentDayAdd = appointmentDateTime.addDays(7 * weeklyOccuranceFactor);
 
-								if (appointmentDayAdd.month() ==  appointmentDateTime.month()) {
+								System.debug('**********weeklyOccurence Loop: weeklyOccurence' + weeklyOccurence + ' weeklyOccuranceFactor: ' + String.valueOf(weeklyOccuranceFactor) + ' appointmentDayAdd: ' + appointmentDayAdd.format());
+
+								if (appointmentDayAdd >= appointmentSchedule.Scheduled_Start_Date_Time__c
+									&& appointmentDayAdd.month() ==  appointmentDateTime.month()) {
 									appointmentDays.add(appointmentDayAdd);
 								}						
 							}
