@@ -100,18 +100,18 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Enable__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Enable</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Enable_Previous__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Enable Previous</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Enable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Enable</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -184,6 +184,17 @@
             <value>Template</value>
         </filters>
         <label>All Templates</label>
+    </listViews>
+    <listViews>
+        <fullName>Custom_By_Date</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Date__c</field>
+            <operation>equals</operation>
+            <value>11/1/2018</value>
+        </filters>
+        <label>Custom By Date</label>
     </listViews>
     <nameField>
         <label>Appointment Name</label>
