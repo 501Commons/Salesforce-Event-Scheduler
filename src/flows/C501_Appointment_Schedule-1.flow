@@ -334,11 +334,15 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <description>Appointment Manager - limit monthly appointments to 2</description>
+    <description>Appointment Manager - restrict to only appointments that are Enabled and are associated with a schedule</description>
     <dynamicChoiceSets>
         <name>GetTimes</name>
         <dataType>String</dataType>
         <displayField>Summary__c</displayField>
+        <filters>
+            <field>Appointment_Schedule__c</field>
+            <operator>NotEqualTo</operator>
+        </filters>
         <filters>
             <field>Appointments_Full__c</field>
             <operator>EqualTo</operator>
@@ -568,6 +572,10 @@
         <connector>
             <targetReference>Any_Appointments</targetReference>
         </connector>
+        <filters>
+            <field>Appointment_Schedule__c</field>
+            <operator>NotEqualTo</operator>
+        </filters>
         <filters>
             <field>Enable__c</field>
             <operator>EqualTo</operator>
