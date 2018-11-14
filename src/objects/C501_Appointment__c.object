@@ -100,14 +100,6 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Enable_Previous__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Enable Previous</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Enable__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>

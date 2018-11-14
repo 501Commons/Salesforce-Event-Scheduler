@@ -20,7 +20,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 		//
 		Date dateToday = system.today();
 		List<C501_Appointment__c> allAppointments = [
-			SELECT Id, Name, Appointment_Schedule__c, Enable__c, Enable_Previous__c, Maximum_Scheduled_Appointments__c
+			SELECT Id, Name, Appointment_Schedule__c, Enable__c, Maximum_Scheduled_Appointments__c
 			FROM C501_Appointment__c
 			WHERE Date__c >= :dateToday];
 
@@ -32,13 +32,12 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 			WHERE Enable__c = true
 			ORDER BY LastModifiedDate ASC];
 
-		// Step1: Disable all Appointments
+		// Step1: Remove Schedule Id
 		Map<String, C501_Appointment__c> allAppointmentsByName = new Map<String, C501_Appointment__c>();
 		Map<Id, C501_Appointment__c> updateAppointments = new Map<Id, C501_Appointment__c>();
 		for ( C501_Appointment__c appointment:allAppointments) {
 			try {
-				appointment.Enable_Previous__c = appointment.Enable__c;
-				appointment.Enable__c = false;
+				appointment.Appointment_Schedule__c = null;
 				updateAppointments.put(appointment.Id, appointment);
 
 				// Build ByName map for processing later
@@ -140,7 +139,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 							appointmentUpdate.Date__c = appointmentDateTime.date();
 							appointmentUpdate.Time__c = appointmentTimeDisplay;
 
-							appointmentUpdate.Enable__c = appointmentUpdate.Enable_Previous__c;
+							appointmentUpdate.Appointment_Schedule__c = appointmentSchedule.Id;
 							appointmentUpdate.Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c;
 							appointmentUpdate.Senior_Only_Appointments_60_and_over__c = appointmentSchedule.Senior_Only_Appointments_60_and_over__c;
 

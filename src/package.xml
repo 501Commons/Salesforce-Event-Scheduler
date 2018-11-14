@@ -44,7 +44,6 @@
         <members>C501_Appointment__c.Available_Time__c</members>
         <members>C501_Appointment__c.C501_Scheduled_Appointments__c</members>
         <members>C501_Appointment__c.Date__c</members>
-        <members>C501_Appointment__c.Enable_Previous__c</members>
         <members>C501_Appointment__c.Enable__c</members>
         <members>C501_Appointment__c.Maximum_Scheduled_Appointments__c</members>
         <members>C501_Appointment__c.Name_Unique__c</members>
