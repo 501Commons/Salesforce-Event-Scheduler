@@ -87,6 +87,7 @@
     </types>
     <types>
         <members>C501_Appointment_Schedule__c.All</members>
+        <members>C501_Appointment_Schedule__c.All_Enabled</members>
         <members>C501_Appointment__c.All</members>
         <members>C501_Appointment__c.All_Templates</members>
         <members>C501_Appointment__c.Custom_By_Date</members>

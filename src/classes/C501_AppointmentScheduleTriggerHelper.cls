@@ -103,10 +103,20 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 					appointmentDateTime = appointmentDateTime.addMonths(1);
 				}
 
-				Integer endTimeInMinutes = appointmentSchedule.Scheduled_End_Time__c.hour() * 60 + appointmentSchedule.Scheduled_End_Time__c.minute();
-				Time appointmentTime = appointmentDateTime.time();
-				Integer appointmentTimeInMinutes = appointmentTime.hour() * 60 + appointmentTime.minute();
-				Integer numberTimeIntervals = (endTimeInMinutes - appointmentTimeInMinutes) / 15;
+				// Get number of 15 min intervals
+				Integer numberTimeIntervals = 0;
+				Time timeCurrent = appointmentSchedule.Scheduled_Start_Date_Time__c.time();
+				while (timeCurrent < appointmentSchedule.Scheduled_End_Time__c) {
+
+					timeCurrent = timeCurrent.addMinutes(15);
+					numberTimeIntervals++;
+
+					if (numberTimeIntervals > 96) {
+						// Throw Exception/Error
+						break;
+					}
+				}
+
 				if (numberTimeIntervals > 96) {
 					// Throw Exception/Error
 					continue;
