@@ -79,7 +79,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 					for ( Integer weekday = 0; weekday <= 6; weekday++ ) {
 
 						String dayOfWeek = appointmentDateTime.format('E');
-						System.debug('**********dayOfWeek: ' + dayOfWeek + ' appointmentSchedule.Days_of_Week__c: ' + appointmentSchedule.Days_of_Week__c);
+						System.debug('**********C501_AppointmentScheduleTriggerHelper::updateAppointmentSchedule dayOfWeek: ' + dayOfWeek + ' appointmentSchedule.Days_of_Week__c: ' + appointmentSchedule.Days_of_Week__c);
 
 						if (appointmentSchedule.Days_of_Week__c.contains(dayOfWeek)) {
 							for ( String weeklyOccurence :appointmentSchedule.Weekly_Occurrence__c.split(';')) {
@@ -87,7 +87,7 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 								Integer weeklyOccuranceFactor = Integer.valueOf(weeklyOccurence.left(1)) - 1;
 								DateTime appointmentDayAdd = appointmentDateTime.addDays(7 * weeklyOccuranceFactor);
 
-								System.debug('**********weeklyOccurence Loop: weeklyOccurence' + weeklyOccurence + ' weeklyOccuranceFactor: ' + String.valueOf(weeklyOccuranceFactor) + ' appointmentDayAdd: ' + appointmentDayAdd.format());
+								System.debug('**********C501_AppointmentScheduleTriggerHelper::updateAppointmentSchedule weeklyOccurence Loop: weeklyOccurence' + weeklyOccurence + ' weeklyOccuranceFactor: ' + String.valueOf(weeklyOccuranceFactor) + ' appointmentDayAdd: ' + appointmentDayAdd.format());
 
 								if (appointmentDayAdd >= appointmentSchedule.Scheduled_Start_Date_Time__c
 									&& appointmentDayAdd.month() ==  appointmentDateTime.month()) {
@@ -103,25 +103,6 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 					appointmentDateTime = appointmentDateTime.addMonths(1);
 				}
 
-				// Get number of 15 min intervals
-				Integer numberTimeIntervals = 0;
-				Time timeCurrent = appointmentSchedule.Scheduled_Start_Date_Time__c.time();
-				while (timeCurrent < appointmentSchedule.Scheduled_End_Time__c) {
-
-					timeCurrent = timeCurrent.addMinutes(15);
-					numberTimeIntervals++;
-
-					if (numberTimeIntervals > 96) {
-						// Throw Exception/Error
-						break;
-					}
-				}
-
-				if (numberTimeIntervals > 96) {
-					// Throw Exception/Error
-					continue;
-				}
-
 				for (DateTime appointment :appointmentDays) {
 
 					// Skip processing times that are in the past
@@ -129,17 +110,16 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 						continue;
 					}
 
-					Integer numberIntervals = numberTimeIntervals;
 					appointmentDateTime = appointment;
 
 					// Salesforce Apex DateTime Rounding Error - make sure starting on same start hour
 					appointmentDateTime = appointmentDateTime.addHours(appointmentSchedule.Scheduled_Start_Date_Time__c.hour() - appointmentDateTime.hour());
 
-					while (numberIntervals-- > 0) {
+					while (appointmentDateTime.time() < appointmentSchedule.Scheduled_End_Time__c) {
 						String appointmentName = appointmentDateTime.format('yyyy-MM-dd - hh:mm a');
 						String appointmentTimeDisplay = appointmentDateTime.format('hh:mm a');
 
-						System.debug('**********Interval: ' + String.valueOf(numberIntervals) + ' appointmentTimeDisplay: ' + appointmentTimeDisplay + ' Name: ' + appointmentName);
+						System.debug('**********C501_AppointmentScheduleTriggerHelper::updateAppointmentSchedule Check Appointment - appointmentTimeDisplay: ' + appointmentTimeDisplay + ' Name: ' + appointmentName);
 
 						if (allAppointmentsByName.containsKey(appointmentName)) {
 							C501_Appointment__c appointmentUpdate = allAppointmentsByName.get(appointmentName);
