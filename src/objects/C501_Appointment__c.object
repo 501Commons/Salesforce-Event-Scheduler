@@ -75,6 +75,19 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Appointments_Max_per_Month__c</fullName>
+        <externalId>false</externalId>
+        <formula>Appointment_Schedule__r.Number_Appointments_per_Month__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Appointments Max per Month</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Available_Time__c</fullName>
         <externalId>false</externalId>
         <label>Available Time</label>
@@ -163,6 +176,17 @@
     <label>Appointment</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Appointment_Schedule__c</columns>
+        <columns>Appointments_Full__c</columns>
+        <columns>Available_Time__c</columns>
+        <columns>Date__c</columns>
+        <columns>Enable__c</columns>
+        <columns>Maximum_Scheduled_Appointments__c</columns>
+        <columns>C501_Scheduled_Appointments__c</columns>
+        <columns>Senior_Only_Appointments_60_and_over__c</columns>
+        <columns>Summary__c</columns>
+        <columns>Appointments_Max_per_Month__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -184,7 +208,7 @@
         <filters>
             <field>Date__c</field>
             <operation>equals</operation>
-            <value>11/1/2018</value>
+            <value>2/1/2019</value>
         </filters>
         <label>Custom By Date</label>
     </listViews>

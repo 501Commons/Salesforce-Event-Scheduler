@@ -25,6 +25,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Number_Appointments_per_Month__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Senior_Only_Appointments_60_and_over__c</field>
             </layoutItems>
             <layoutItems>

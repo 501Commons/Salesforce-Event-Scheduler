@@ -29,8 +29,8 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 			SELECT Id, Enable__c, Scheduled_Start_Date_Time__c, Scheduled_End_Time__c, Range_Of_Recurrence_End_By__c, Days_of_Week__c, Weekly_Occurrence__c,
 				Number_Appointments_per_15_min_interval__c, Senior_Only_Appointments_60_and_over__c
 			FROM C501_Appointment_Schedule__c
-			WHERE Enable__c = true
-			ORDER BY LastModifiedDate ASC];
+			WHERE Enable__c = true AND isDeleted = false
+			ORDER BY LastModifiedDate DESC];
 
 		// Step1: Remove Schedule Id
 		Map<String, C501_Appointment__c> allAppointmentsByName = new Map<String, C501_Appointment__c>();
@@ -122,18 +122,21 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 						System.debug('**********C501_AppointmentScheduleTriggerHelper::updateAppointmentSchedule Check Appointment - appointmentTimeDisplay: ' + appointmentTimeDisplay + ' Name: ' + appointmentName);
 
 						if (allAppointmentsByName.containsKey(appointmentName)) {
+
 							C501_Appointment__c appointmentUpdate = allAppointmentsByName.get(appointmentName);
+							if (!updateAppointments.containsKey(appointmentUpdate.Id)) {
+								
+								appointmentUpdate.Appointment_Schedule__c = appointmentSchedule.Id;
+								appointmentUpdate.Available_Time__c = appointmentDateTime;
+								appointmentUpdate.Date__c = appointmentDateTime.date();
+								appointmentUpdate.Time__c = appointmentTimeDisplay;
 
-							appointmentUpdate.Appointment_Schedule__c = appointmentSchedule.Id;
-							appointmentUpdate.Available_Time__c = appointmentDateTime;
-							appointmentUpdate.Date__c = appointmentDateTime.date();
-							appointmentUpdate.Time__c = appointmentTimeDisplay;
+								appointmentUpdate.Appointment_Schedule__c = appointmentSchedule.Id;
+								appointmentUpdate.Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c;
+								appointmentUpdate.Senior_Only_Appointments_60_and_over__c = appointmentSchedule.Senior_Only_Appointments_60_and_over__c;
 
-							appointmentUpdate.Appointment_Schedule__c = appointmentSchedule.Id;
-							appointmentUpdate.Maximum_Scheduled_Appointments__c = appointmentSchedule.Number_Appointments_per_15_min_interval__c;
-							appointmentUpdate.Senior_Only_Appointments_60_and_over__c = appointmentSchedule.Senior_Only_Appointments_60_and_over__c;
-
-							updateAppointments.put(appointmentUpdate.Id, appointmentUpdate);
+								updateAppointments.put(appointmentUpdate.Id, appointmentUpdate);
+							}
 						}
 						else {
 							C501_Appointment__c appointmentScheduling = new C501_Appointment__c(

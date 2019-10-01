@@ -46,6 +46,10 @@
                 <behavior>Edit</behavior>
                 <field>Appointment_Schedule__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Appointments_Max_per_Month__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

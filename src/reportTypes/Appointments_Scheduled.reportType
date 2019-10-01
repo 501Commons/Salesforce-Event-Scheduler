@@ -812,11 +812,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Survey_Household_Composition__c</field>
-            <table>Contact</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Survey_Homeless__c</field>
             <table>Contact</table>
         </columns>

@@ -158,6 +158,16 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>Unique_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Unique Id</label>
+        <length>128</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Appointment Scheduled</label>
     <nameField>
         <label>Appointment Scheduled Name</label>
