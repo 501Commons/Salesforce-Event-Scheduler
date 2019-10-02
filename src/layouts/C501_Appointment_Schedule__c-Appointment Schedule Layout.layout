@@ -24,7 +24,7 @@
                 <field>Number_Appointments_per_15_min_interval__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Number_Appointments_per_Month__c</field>
             </layoutItems>
             <layoutItems>

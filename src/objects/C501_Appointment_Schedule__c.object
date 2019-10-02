@@ -149,7 +149,7 @@
         <externalId>false</externalId>
         <label>Number Appointments per Month</label>
         <precision>2</precision>
-        <required>false</required>
+        <required>true</required>
         <scale>0</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
