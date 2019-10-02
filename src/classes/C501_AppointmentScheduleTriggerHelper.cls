@@ -17,10 +17,19 @@ public with sharing class C501_AppointmentScheduleTriggerHelper {
 
 		if (isBefore) {
 			for (C501_Appointment_Schedule__c appointmentSchedule :appointmentScheduleList) {
+
 				System.debug(LoggingLevel.DEBUG, '*****C501_AppointmentScheduleTriggerHelper::updateAppointmentSchedule - isBefore Scheduled_Start_Date_Time__c (Time): ' + appointmentSchedule.Scheduled_Start_Date_Time__c.time() + ' Scheduled_End_Time__c: ' + appointmentSchedule.Scheduled_End_Time__c);
 				if (appointmentSchedule.Scheduled_Start_Date_Time__c.time() >= appointmentSchedule.Scheduled_End_Time__c) {
 					System.debug(LoggingLevel.DEBUG, '*****C501_AppointmentScheduleTriggerHelper::updateAppointmentSchedule - add error');
 					appointmentSchedule.AddError('updateAppointmentSchedule::Exception Start Time (' + appointmentSchedule.Scheduled_Start_Date_Time__c.time() + ') must be less than End Time (' + appointmentSchedule.Scheduled_End_Time__c + ')');
+					continue;					
+				}
+
+				System.debug(LoggingLevel.DEBUG, '*****C501_AppointmentScheduleTriggerHelper::updateAppointmentSchedule - isBefore Scheduled_Start_Date_Time__c (Date): ' + appointmentSchedule.Scheduled_Start_Date_Time__c.date() + ' Range_Of_Recurrence_End_By__c: ' + appointmentSchedule.Range_Of_Recurrence_End_By__c);
+				if (appointmentSchedule.Scheduled_Start_Date_Time__c.date() > appointmentSchedule.Range_Of_Recurrence_End_By__c) {
+					System.debug(LoggingLevel.DEBUG, '*****C501_AppointmentScheduleTriggerHelper::updateAppointmentSchedule - add error');
+					appointmentSchedule.AddError('updateAppointmentSchedule::Exception Start Date (' + appointmentSchedule.Scheduled_Start_Date_Time__c.date() + ') must be less or equal to the End Date (' + appointmentSchedule.Range_Of_Recurrence_End_By__c + ')');
+					continue;					
 				}
 			}
 		}
