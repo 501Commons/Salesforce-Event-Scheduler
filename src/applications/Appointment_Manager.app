@@ -10,6 +10,8 @@
     <tabs>standard-Event</tabs>
     <tabs>C501_Appointment_Schedule__c</tabs>
     <tabs>C501_Appointment__c</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-DeleteEvent</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Appointment_Manager_UtilityBar</utilityBar>
 </CustomApplication>

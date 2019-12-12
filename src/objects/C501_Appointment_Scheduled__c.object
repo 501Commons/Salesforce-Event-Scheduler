@@ -49,7 +49,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -111,6 +111,16 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>C501_Time_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>TimeValue(C501_Appointment__r.Available_Time__c - (8/24))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Time Formula</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
         <fullName>Contact_Id__c</fullName>
         <externalId>false</externalId>
         <label>Contact_Id</label>
@@ -169,6 +179,11 @@
         <unique>false</unique>
     </fields>
     <label>Appointment Scheduled</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Appointment Scheduled Name</label>
         <type>Text</type>

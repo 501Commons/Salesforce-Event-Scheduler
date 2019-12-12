@@ -10,7 +10,8 @@ public with sharing class C501_AppointmentScheduleTriggerTest {
 			Scheduled_Start_Date_Time__c = DateTime.now(),
 			Scheduled_End_Time__c = DateTime.now().addHours(1).time(),
 			Number_Appointments_per_15_min_interval__c = 4,
-			Enable__c = false
+			Enable__c = false,
+			Number_Appointments_per_Month__c = 10
 		);
 		insert appointmentSchedule;
 
