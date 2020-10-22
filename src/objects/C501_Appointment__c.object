@@ -182,6 +182,7 @@
         <columns>Available_Time__c</columns>
         <columns>Date__c</columns>
         <columns>Enable__c</columns>
+        <columns>Time__c</columns>
         <columns>Maximum_Scheduled_Appointments__c</columns>
         <columns>C501_Scheduled_Appointments__c</columns>
         <columns>Senior_Only_Appointments_60_and_over__c</columns>

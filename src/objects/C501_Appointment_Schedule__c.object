@@ -135,7 +135,9 @@
     <fields>
         <fullName>Number_Appointments_per_15_min_interval__c</fullName>
         <defaultValue>7</defaultValue>
+        <description>Maximum number of households available to sign-up per 15 minute interval.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Maximum number of households available to sign-up per 15 minute interval.</inlineHelpText>
         <label>Number Appointments per 15 min interval</label>
         <precision>18</precision>
         <required>true</required>
@@ -146,7 +148,9 @@
     </fields>
     <fields>
         <fullName>Number_Appointments_per_Month__c</fullName>
+        <description>Maximum number of appointments a household can have in a month to be available to sign-up for this appointment.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Maximum number of appointments a household can have in a month to be available to sign-up for this appointment.</inlineHelpText>
         <label>Number Appointments per Month</label>
         <precision>2</precision>
         <required>true</required>
