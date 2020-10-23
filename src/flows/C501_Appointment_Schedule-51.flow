@@ -334,7 +334,7 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <description>DaveB - change monthly appointment limit per person from 2 to 3</description>
+    <description>DaveB - Re-enable appointment scheduling since the disable when COVID started</description>
     <dynamicChoiceSets>
         <name>GetTimes</name>
         <dataType>String</dataType>
@@ -451,6 +451,12 @@
         <name>BuilderType</name>
         <value>
             <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
@@ -852,12 +858,21 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
+            <name>Screen_Client_Info_Spacer16</name>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Screen_Client_Info_Holiday</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px; font-family: sans-serif;&quot;&gt;Starting January 13, 2021, every customer will need to renew their account. There will be a form to fill out. Please bring your Current Picture ID and Proof of Address.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
             <name>Screen_Client_Info_Spacer5</name>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
             <name>Screen_Client_Info_Provide</name>
-            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:20px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;1&quot;&gt;Please provide your last name and birthdate to schedule an appointment.&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;Please provide your last name and birthdate to schedule an appointment.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -950,7 +965,7 @@
         </fields>
         <fields>
             <name>Screen_Info_CalendarHelp1</name>
-            <fieldText>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:16px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;Click on the field above to display a calendar and select a date.&lt;FONT STYLE=&quot;font-size:14px&quot;&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 16px;&quot;&gt;Click on the field above to display a calendar and select a date.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -1038,7 +1053,7 @@
     </textTemplates>
     <textTemplates>
         <name>varTextTemplateFoodBankServiceHours</name>
-        <text>&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:16px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;General Service Hours (Day and Times may vary)&lt;/B&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Monday: &lt;/I&gt;12:00 p.m. to 4:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Tuesday: &lt;/I&gt;CLOSED&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Wednesday: &lt;/I&gt;10:00 a.m. to 2:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Thursday: &lt;/I&gt;10:00 a.m. to 2:00 p.m. (for seniors 60 years and over only)&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;Friday: &lt;/I&gt;10:00 a.m. to 2:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;I&gt;2nd and 4th Wednesday of each month: &lt;/I&gt;4:00 p.m. to 7:00 p.m.&lt;/FONT&gt;&lt;/DIV&gt;</text>
+        <text>&lt;p style=&quot;text-align: left;&quot;&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;General Service Hours (Day and Times may vary)&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;i style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;Monday: &lt;/i&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;12:00 p.m. to 3:30 p.m.﻿&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;i style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;Tuesday: &lt;/i&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;CLOSED&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;i style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;Wednesday: &lt;/i&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;10:00 a.m. to 1:30 p.m.&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;i style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;Thursday: &lt;/i&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;10:00 a.m. to 1:30 p.m. (&lt;/span&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;&lt;i&gt;for seniors 60 years and over only&lt;/i&gt;&lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;)&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;i style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;Friday: &lt;/i&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;10:00 a.m. to 1:30 p.m.&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;i style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;2nd and 4th Wednesday of each month: 10&lt;/i&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 20px;&quot;&gt;:00 a.m. to 3:30 p.m.&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>varTextTemplateMaxAppointments</name>

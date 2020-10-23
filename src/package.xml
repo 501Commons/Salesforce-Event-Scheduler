@@ -78,7 +78,8 @@
         <name>FlexiPage</name>
     </types>
     <types>
-        <members>C501_Appointment_Schedule-45</members>
+        <members>C501_Appointment_Schedule-51</members>
+        <members>C501_Appointment_Schedule_Event-14</members>
         <name>Flow</name>
     </types>
     <types>
